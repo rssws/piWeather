@@ -1,0 +1,9 @@
+pi:
+  apiKey:
+    # API keys allowed for the request sending to this server
+    piAPI: >-
+      324cj2io3WRjrc,
+      jwiefA234fwief
+    # open weather api key
+    openWeatherAPI: YOUR-KEY-GOES-HERE
+
