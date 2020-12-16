@@ -2,16 +2,15 @@ package wang.zhongpin.pi.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 import wang.zhongpin.pi.model.Response;
 import wang.zhongpin.pi.model.ResponseStatus;
 import wang.zhongpin.pi.service.ApiKeyService;
 import wang.zhongpin.pi.service.weatherService.OpenWeatherAPI;
 import wang.zhongpin.pi.service.weatherService.WeatherAPI;
 
+@CrossOrigin(origins = "*", maxAge = 1800)
 @RestController
 @RequestMapping("/weather")
 public class WeatherController {
