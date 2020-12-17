@@ -6,7 +6,6 @@ pi:
       jwiefA234fwief
     # open weather api key
     openWeatherAPI: YOUR-KEY-GOES-HERE
-  allowedCorsOrigin: *
 
 server:
   port: 31415

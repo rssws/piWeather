@@ -8,9 +8,12 @@ import wang.zhongpin.pi.model.weather.Coord;
 import wang.zhongpin.pi.model.weather.Weather;
 import wang.zhongpin.pi.model.weather.WeatherResponse;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public abstract class WeatherAPI {
+
     public abstract WeatherResponse getResponseByCity(String cityName) throws ExecutionException, InterruptedException, HttpException;
     public abstract WeatherResponse getResponseByCoord(Coord coord);
     public abstract WeatherResponse getResponseByZipCode(String zipCode);
