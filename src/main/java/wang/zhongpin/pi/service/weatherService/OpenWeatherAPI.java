@@ -58,8 +58,8 @@ public class OpenWeatherAPI extends WeatherAPI {
         );
 
         Coord coord = new Coord(
-                r.getJSONObject("coord").getDouble("lon"),
-                r.getJSONObject("coord").getDouble("lat")
+                r.getJSONObject("coord").getDouble("lat"),
+                r.getJSONObject("coord").getDouble("lon")
         );
 
         WeatherResponse ret = new WeatherResponse(ResponseStatus.SUCCESS, weather, coord);
