@@ -1,13 +1,15 @@
 package wang.zhongpin.pi.model.weather;
 
 public class Weather {
+    private int dt;
     private String description;
     private String icon;
-    private double temp;
-    private double tempMax;
-    private double tempMin;
+    private Double temp;
+    private Double tempMax;
+    private Double tempMin;
 
-    public Weather(String description, String icon, double temp, double tempMax, double tempMin) {
+    public Weather(int dt, String description, String icon, Double temp, Double tempMax, Double tempMin) {
+        this.dt = dt;
         this.description = description;
         this.icon = icon;
         this.temp = temp;
@@ -31,27 +33,35 @@ public class Weather {
         this.icon = icon;
     }
 
-    public double getTemp() {
+    public Double getTemp() {
         return temp;
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(Double temp) {
         this.temp = temp;
     }
 
-    public double getTempMax() {
+    public Double getTempMax() {
         return tempMax;
     }
 
-    public void setTempMax(double tempMax) {
+    public void setTempMax(Double tempMax) {
         this.tempMax = tempMax;
     }
 
-    public double getTempMin() {
+    public Double getTempMin() {
         return tempMin;
     }
 
-    public void setTempMin(double tempMin) {
+    public void setTempMin(Double tempMin) {
         this.tempMin = tempMin;
+    }
+
+    public int getDt() {
+        return dt;
+    }
+
+    public void setDt(int dt) {
+        this.dt = dt;
     }
 }

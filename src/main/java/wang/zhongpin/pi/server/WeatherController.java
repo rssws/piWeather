@@ -7,14 +7,17 @@ import org.springframework.web.bind.annotation.*;
 import wang.zhongpin.pi.model.CachePool;
 import wang.zhongpin.pi.model.Response;
 import wang.zhongpin.pi.model.ResponseStatus;
+import wang.zhongpin.pi.model.weather.Coord;
 import wang.zhongpin.pi.model.weather.WeatherResponse;
 import wang.zhongpin.pi.service.ApiKeyService;
 import wang.zhongpin.pi.service.weatherService.OpenWeatherAPI;
 import wang.zhongpin.pi.service.weatherService.WeatherAPI;
 
+import static java.lang.Double.parseDouble;
+
 @CrossOrigin(origins = "*", maxAge = 1800)
 @RestController
-@RequestMapping("/weather")
+@RequestMapping("/")
 public class WeatherController {
     private WeatherAPI weatherAPI;
     private ApiKeyService apiKeyService;
@@ -30,7 +33,7 @@ public class WeatherController {
         this.apiKeyService = apiKeyService;
     }
 
-    @GetMapping("/city/{cityName}/{apiKey}")
+    @GetMapping("/weather/city/{cityName}/{apiKey}")
     public Response getWeatherResponse(
             @PathVariable String cityName,
             @PathVariable String apiKey) {
@@ -38,9 +41,24 @@ public class WeatherController {
             return new Response(ResponseStatus.ERROR, "Api key is not valid!");
         }
 
+        try {
+            return weatherAPI.getWeatherResponseByCity(cityName);
+        } catch (Exception e) {
+            return new Response(ResponseStatus.ERROR, e.getMessage());
+        }
+    }
+
+    @GetMapping("/dailyWeather/coord/{lat}/{lon}/{apiKey}")
+    public Response getDailyWeatherResponse(
+            @PathVariable String lat,
+            @PathVariable String lon,
+            @PathVariable String apiKey) {
+        if(!apiKeyService.validate(apiKey)) {
+            return new Response(ResponseStatus.ERROR, "Api key is not valid!");
+        }
 
         try {
-            return weatherAPI.getResponseByCity(cityName);
+            return weatherAPI.getDailyWeatherResponseByCoord(new Coord(parseDouble(lat), parseDouble(lon)));
         } catch (Exception e) {
             return new Response(ResponseStatus.ERROR, e.getMessage());
         }

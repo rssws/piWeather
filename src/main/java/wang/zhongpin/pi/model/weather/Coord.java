@@ -1,13 +1,12 @@
 package wang.zhongpin.pi.model.weather;
 
 public class Coord {
-
-    private double lon;
     private double lat;
+    private double lon;
 
-    public Coord(double lon, double lat) {
-        this.lon = lon;
+    public Coord(double lat, double lon) {
         this.lat = lat;
+        this.lon = lon;
     }
 
     public void setLat(double lat) {
@@ -24,5 +23,10 @@ public class Coord {
 
     public double getLon() {
         return lon;
+    }
+
+    @Override
+    public String toString() {
+        return lat + "," + lon;
     }
 }
