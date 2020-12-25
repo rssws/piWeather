@@ -13,14 +13,16 @@ import wang.zhongpin.pi.service.ApiKeyService;
 import wang.zhongpin.pi.service.weatherService.OpenWeatherAPI;
 import wang.zhongpin.pi.service.weatherService.WeatherAPI;
 
+import javax.servlet.http.HttpServletRequest;
+
 import static java.lang.Double.parseDouble;
 
 @CrossOrigin(origins = "*", maxAge = 1800)
 @RestController
 @RequestMapping("/")
 public class WeatherController {
-    private WeatherAPI weatherAPI;
-    private ApiKeyService apiKeyService;
+    private final WeatherAPI weatherAPI;
+    private final ApiKeyService apiKeyService;
 
     // autowiring all beans that might be needed later...
     // instead of using field injection, we leave the field just there and initialize it
@@ -64,4 +66,41 @@ public class WeatherController {
         }
     }
 
+    @GetMapping("/weather/ip/{apiKey}")
+    public Response getWeatherResponseByIP(
+            @PathVariable String apiKey,
+            HttpServletRequest request) {
+        if(!apiKeyService.validate(apiKey)) {
+            return new Response(ResponseStatus.ERROR, "Api key is not valid!");
+        }
+
+        try {
+            String remoteAddr = "";
+            if (request != null) {
+                remoteAddr = request.getHeader("X-FORWARDED-FOR");
+                if (remoteAddr == null || "".equals(remoteAddr)) {
+                    remoteAddr = request.getRemoteAddr();
+                }
+            }
+            return weatherAPI.getWeatherResponseByIP(remoteAddr);
+        } catch (Exception e) {
+            return new Response(ResponseStatus.ERROR, e.getMessage());
+        }
+    }
+
+    @GetMapping("/weather/ip/{ip}/{apiKey}")
+    public Response getWeatherResponseByIP(
+            @PathVariable String ip,
+            @PathVariable String apiKey) {
+        if(!apiKeyService.validate(apiKey)) {
+            return new Response(ResponseStatus.ERROR, "Api key is not valid!");
+        }
+
+        try {
+
+            return weatherAPI.getWeatherResponseByIP(ip);
+        } catch (Exception e) {
+            return new Response(ResponseStatus.ERROR, e.getMessage());
+        }
+    }
 }

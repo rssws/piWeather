@@ -62,7 +62,9 @@ public class OpenWeatherAPI extends WeatherAPI {
                 r.getJSONObject("coord").getDouble("lon")
         );
 
-        WeatherResponse ret = new WeatherResponse(ResponseStatus.SUCCESS, weather, coord);
+        String name = r.getString("name");
+
+        WeatherResponse ret = new WeatherResponse(ResponseStatus.SUCCESS, weather, coord, name);
         weatherResponseCachePool.insertCache(cityName, ret);
         return ret;
     }
