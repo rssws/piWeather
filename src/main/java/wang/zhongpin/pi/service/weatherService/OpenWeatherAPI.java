@@ -29,6 +29,8 @@ public class OpenWeatherAPI extends WeatherAPI {
     private final CachePool<WeatherResponse> weatherResponseCachePool = new CachePool<>(1000 * 60 * 10);
     // daily weather: cache valid time <- 1 hour
     private final CachePool<DailyWeatherResponse> dailyWeatherResponseCachePool = new CachePool<>(1000 * 60 * 60);
+    // hourly weather: cache valid time <- 30 minutes
+    private final CachePool<HourlyWeatherResponse> hourlyWeatherResponseCachePool = new CachePool<>(1000 * 60 * 30);
 
     @Override
     public WeatherResponse getWeatherResponseByCity(String cityName) throws ExecutionException, InterruptedException, HttpException {
@@ -123,6 +125,53 @@ public class OpenWeatherAPI extends WeatherAPI {
 
         DailyWeatherResponse ret = new DailyWeatherResponse(ResponseStatus.SUCCESS, dailyWeather, coord);
         dailyWeatherResponseCachePool.insertCache(coord.toString(), ret);
+        return ret;
+    }
+
+    @Override
+    public HourlyWeatherResponse getHourlyWeatherResponseByCoord(Coord coord) throws ExecutionException, InterruptedException, HttpException {
+        // if cached
+        Map.Entry<Long, HourlyWeatherResponse> cache = hourlyWeatherResponseCachePool.getCache(coord.toString());
+        if(cache != null) {
+            HourlyWeatherResponse hourlyWeatherResponse = cache.getValue();
+            hourlyWeatherResponse.responseMessage = "Last time updated: " + new Date(cache.getKey()).toString();
+            return hourlyWeatherResponse;
+        }
+
+        // use the free onecall api provided by openweathermap.org
+        System.out.println("lat:" + coord.getLat());
+        System.out.println("lat:" + coord.getLon());
+
+        Future<HttpResponse<JsonNode>> future = Unirest.get(BASE_URL + "onecall")
+                .queryString("lat", coord.getLat())
+                .queryString("lon", coord.getLon())
+                .queryString("exclude", "current,minutely,daily,alerts")
+                .queryString("appid", apiKey)
+                .asJsonAsync();
+        if(future.get().getStatus() != 200) {
+            throw new HttpException(
+                    "OpenWeatherAPI returns HTTP_CODE " + future.get().getStatus() + ". "
+                            + "ResponseBody:" + future.get().getBody().toString()
+            );
+        }
+        JSONObject r = future.get().getBody().getObject();
+        int hourlyWeatherLength = r.getJSONArray("hourly").length();
+        HourlyWeather hourlyWeather = new HourlyWeather(new ArrayList<>());
+        for(int i = 0; i < hourlyWeatherLength; i++) {
+            JSONObject tmp = r.getJSONArray("hourly").getJSONObject(i);
+            Weather weather = new Weather(
+                    tmp.getInt("dt"),
+                    tmp.getJSONArray("weather").getJSONObject(0).getString("description"),
+                    tmp.getJSONArray("weather").getJSONObject(0).getString("icon"),
+                    tmp.getDouble("temp"),
+                    null,
+                    null
+            );
+            hourlyWeather.addWeather(weather);
+        }
+
+        HourlyWeatherResponse ret = new HourlyWeatherResponse(ResponseStatus.SUCCESS, hourlyWeather, coord);
+        hourlyWeatherResponseCachePool.insertCache(coord.toString(), ret);
         return ret;
     }
 

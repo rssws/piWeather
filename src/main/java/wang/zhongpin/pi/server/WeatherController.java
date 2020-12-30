@@ -36,7 +36,7 @@ public class WeatherController {
     }
 
     @GetMapping("/weather/city/{cityName}/{apiKey}")
-    public Response getWeatherResponse(
+    public Response getWeatherResponseByCity(
             @PathVariable String cityName,
             @PathVariable String apiKey) {
         if(!apiKeyService.validate(apiKey)) {
@@ -51,7 +51,7 @@ public class WeatherController {
     }
 
     @GetMapping("/dailyWeather/coord/{lat}/{lon}/{apiKey}")
-    public Response getDailyWeatherResponse(
+    public Response getDailyWeatherResponseByCoord(
             @PathVariable String lat,
             @PathVariable String lon,
             @PathVariable String apiKey) {
@@ -61,6 +61,22 @@ public class WeatherController {
 
         try {
             return weatherAPI.getDailyWeatherResponseByCoord(new Coord(parseDouble(lat), parseDouble(lon)));
+        } catch (Exception e) {
+            return new Response(ResponseStatus.ERROR, e.getMessage());
+        }
+    }
+
+    @GetMapping("/hourlyWeather/coord/{lat}/{lon}/{apiKey}")
+    public Response getHourlyWeatherResponseByCoord(
+            @PathVariable String lat,
+            @PathVariable String lon,
+            @PathVariable String apiKey) {
+        if(!apiKeyService.validate(apiKey)) {
+            return new Response(ResponseStatus.ERROR, "Api key is not valid!");
+        }
+
+        try {
+            return weatherAPI.getHourlyWeatherResponseByCoord(new Coord(parseDouble(lat), parseDouble(lon)));
         } catch (Exception e) {
             return new Response(ResponseStatus.ERROR, e.getMessage());
         }

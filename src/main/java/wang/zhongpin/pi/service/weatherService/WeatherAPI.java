@@ -19,6 +19,7 @@ public abstract class WeatherAPI {
     public abstract WeatherResponse getWeatherResponseByCoord(Coord coord);
     public abstract WeatherResponse getWeatherResponseByZipCode(String zipCode);
     public abstract DailyWeatherResponse getDailyWeatherResponseByCoord(Coord coord) throws ExecutionException, InterruptedException, HttpException;
+    public abstract HourlyWeatherResponse getHourlyWeatherResponseByCoord(Coord coord) throws ExecutionException, InterruptedException, HttpException;
 
     public WeatherResponse getWeatherResponseByIP(String ipAddr) throws ExecutionException, InterruptedException, HttpException {
         IPGeolocationAPI ipGeolocationAPI = new IpApiComIPGeolocationAPI();
