@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>wang.zhongpin.pi</groupId>
 	<artifactId>piService</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 	<name>pi api service</name>
 	<description>Providing RESTful API services like current weather, daily weather, ip geolocation, etc.</description>
 
