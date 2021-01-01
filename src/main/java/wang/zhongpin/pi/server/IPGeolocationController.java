@@ -2,12 +2,12 @@ package wang.zhongpin.pi.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import wang.zhongpin.pi.model.RequestLimitation;
 import wang.zhongpin.pi.model.Response;
 import wang.zhongpin.pi.model.ResponseStatus;
 import wang.zhongpin.pi.service.ApiKeyService;
 import wang.zhongpin.pi.service.IPGeolocationService.IPGeolocationAPI;
 import wang.zhongpin.pi.service.IPGeolocationService.IpApiComIPGeolocationAPI;
-
 import javax.servlet.http.HttpServletRequest;
 
 @CrossOrigin(origins = "*", maxAge = 1800)
@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 public class IPGeolocationController {
     private final IPGeolocationAPI ipGeolocationAPI;
     private final ApiKeyService apiKeyService;
+
+    RequestLimitation requestLimitationNormal = new RequestLimitation(1000 * 60, 30);
+    RequestLimitation requestLimitationSensitive = new RequestLimitation(1000 * 60, 5);
 
     @Autowired
     public IPGeolocationController(
@@ -30,16 +33,12 @@ public class IPGeolocationController {
         if(!apiKeyService.validate(apiKey)) {
             return new Response(ResponseStatus.ERROR, "Api key is not valid!");
         }
+        if (requestLimitationNormal.isTooFrequent(Utils.getRemoteAddr(request))) {
+            return new Response(ResponseStatus.ERROR, "Request sent too frequently! Please wait for one minute!");
+        }
 
         try {
-            String remoteAddr = "";
-            if (request != null) {
-                remoteAddr = request.getHeader("X-FORWARDED-FOR");
-                if (remoteAddr == null || "".equals(remoteAddr)) {
-                    remoteAddr = request.getRemoteAddr();
-                }
-            }
-            return ipGeolocationAPI.getIPGeolocation(remoteAddr);
+            return ipGeolocationAPI.getIPGeolocation(Utils.getRemoteAddr(request));
         } catch (Exception e) {
             return new Response(ResponseStatus.ERROR, e.getMessage());
         }
@@ -48,9 +47,14 @@ public class IPGeolocationController {
     @GetMapping("/{ip}/{apiKey}")
     public Response getIPGeolocationResponseByIP(
             @PathVariable String ip,
-            @PathVariable String apiKey) {
-        if(!apiKeyService.validate(apiKey)) {
+            @PathVariable String apiKey,
+            HttpServletRequest request) {
+
+        if (!apiKeyService.validate(apiKey)) {
             return new Response(ResponseStatus.ERROR, "Api key is not valid!");
+        }
+        if (requestLimitationSensitive.isTooFrequent(Utils.getRemoteAddr(request))) {
+            return new Response(ResponseStatus.ERROR, "Request sent too frequently! Please wait for one minute!");
         }
 
         try {

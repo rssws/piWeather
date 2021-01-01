@@ -2,6 +2,7 @@ package wang.zhongpin.pi.model;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class CachePool <T> {
@@ -37,11 +38,7 @@ public class CachePool <T> {
      * Remove all out-dated caches in the pool.
      */
     public void removeOldCache() {
-        cachePool.forEach((k, v) -> {
-            if (!isValid(v)) {
-                cachePool.remove(k);
-            }
-        });
+        cachePool.entrySet().removeIf(entry -> !isValid(entry.getValue()));
     }
 
     public void insertCache(String key, T content) {
