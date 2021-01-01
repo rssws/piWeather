@@ -1,19 +1,14 @@
 package wang.zhongpin.pi.service.weatherService;
 
 import kong.unirest.*;
-import kong.unirest.json.JSONArray;
 import kong.unirest.json.JSONObject;
 import org.apache.http.HttpException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import wang.zhongpin.pi.model.CachePool;
 import wang.zhongpin.pi.model.weather.*;
 import wang.zhongpin.pi.model.ResponseStatus;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -56,8 +51,13 @@ public class OpenWeatherAPI extends WeatherAPI {
                 r.getJSONArray("weather").getJSONObject(0).getString("icon"),
                 r.getJSONObject("main").getDouble("temp"),
                 r.getJSONObject("main").getDouble("temp_max"),
-                r.getJSONObject("main").getDouble("temp_min")
-        );
+                r.getJSONObject("main").getDouble("temp_min"),
+                r.getJSONObject("main").getDouble("feels_like"),
+                r.getJSONObject("main").getDouble("pressure"),
+                r.getJSONObject("main").getDouble("humidity"),
+                r.getJSONObject("wind").getDouble("speed"),
+                r.getJSONObject("wind").getDouble("deg"),
+                null);
 
         Coord coord = new Coord(
                 r.getJSONObject("coord").getDouble("lat"),
@@ -118,8 +118,13 @@ public class OpenWeatherAPI extends WeatherAPI {
                     tmp.getJSONArray("weather").getJSONObject(0).getString("icon"),
                     null,
                     tmp.getJSONObject("temp").getDouble("max"),
-                    tmp.getJSONObject("temp").getDouble("min")
-            );
+                    tmp.getJSONObject("temp").getDouble("min"),
+                    null,
+                    tmp.getDouble("pressure"),
+                    tmp.getDouble("humidity"),
+                    tmp.getDouble("wind_speed"),
+                    tmp.getDouble("wind_deg"),
+                    tmp.getDouble("pop"));
             dailyWeather.addWeather(weather);
         }
 
@@ -165,8 +170,13 @@ public class OpenWeatherAPI extends WeatherAPI {
                     tmp.getJSONArray("weather").getJSONObject(0).getString("icon"),
                     tmp.getDouble("temp"),
                     null,
-                    null
-            );
+                    null,
+                    tmp.getDouble("feels_like"),
+                    tmp.getDouble("pressure"),
+                    tmp.getDouble("humidity"),
+                    tmp.getDouble("wind_speed"),
+                    tmp.getDouble("wind_deg"),
+                    tmp.getDouble("pop"));
             hourlyWeather.addWeather(weather);
         }
 
