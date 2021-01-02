@@ -45,4 +45,10 @@ public class CachePool <T> {
         cachePool.put(key, new AbstractMap.SimpleImmutableEntry<>(System.currentTimeMillis(), content));
         removeOldCache();
     }
+
+    public void updateCacheValue(String key, T content) {
+        Map.Entry<Long, T> oldCache = cachePool.get(key);
+        cachePool.put(key, new AbstractMap.SimpleImmutableEntry<>(oldCache.getKey(), content));
+        removeOldCache();
+    }
 }

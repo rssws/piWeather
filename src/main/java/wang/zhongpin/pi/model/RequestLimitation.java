@@ -24,13 +24,11 @@ public class RequestLimitation {
             int requestCounter = cache.getValue();
             if (requestCounter + 1 <= this.limitation) {
                 // not exceed the limit
-                requestCountsPerIP.insertCache(remoteAddr, requestCounter + 1);
+                // only update the counter, not the timestamp
+                requestCountsPerIP.updateCacheValue(remoteAddr, requestCounter + 1);
                 return false;
             } else {
                 // exceed the limit
-                // renew the timestamp, without adding up to prevent overflow
-                requestCountsPerIP.insertCache(remoteAddr, requestCounter);
-                // reject the request
                 return true;
             }
         }
