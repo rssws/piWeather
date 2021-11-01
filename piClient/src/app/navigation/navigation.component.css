@@ -1,0 +1,10 @@
+@media screen and (orientation: portrait) {
+  .navigation-text {
+    font-size: 2.1vh !important;
+  }
+}
+
+.navigation-text {
+  font-size: 4vh;
+}
+
