@@ -2,8 +2,7 @@ pi:
   apiKey:
     # API keys allowed for the request sending to this server
     piAPI: >-
-      324cj2io3WRjrc,
-      jwiefA234fwief
+      ${PI_API:""}
     # open weather api key
     openWeatherAPI: ${OPEN_WEATHER_API:"empty_key"}
 
