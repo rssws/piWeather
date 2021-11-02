@@ -122,3 +122,10 @@ Buy a better display rather than TFT LCD to avoid this problem.
 ![pi-weather-1](./docs/images/pi-weather-1.jpg "pi-weather-1")
 ![pi-weather-2](./docs/images/pi-weather-2.jpg "pi-weather-2")
 ![pi-weather-3](./docs/images/pi-weather-3.jpg "pi-weather-3")
+
+## Contributing
+Submit an issue if you have any suggestions, find a bug, etc. 
+Create a PR if you would like to contribute to this repository directly.
+
+## License
+[GPL-3.0 License](./LICENSE)
