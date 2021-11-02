@@ -5,7 +5,7 @@ pi:
       324cj2io3WRjrc,
       jwiefA234fwief
     # open weather api key
-    openWeatherAPI: YOUR-KEY-GOES-HERE
+    openWeatherAPI: ${OPEN_WEATHER_API:"empty_key"}
 
 server:
   port: 31415

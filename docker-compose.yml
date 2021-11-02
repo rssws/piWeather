@@ -19,5 +19,7 @@ services:
     build: ./piService
     image: pi-service:latest
     restart: unless-stopped
+    environment:
+      - 'OPEN_WEATHER_API=${OPEN_WEATHER_API}'
     ports:
       - "31415:31415"
