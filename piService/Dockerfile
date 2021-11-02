@@ -1,9 +1,14 @@
-FROM openjdk:15-jdk-alpine
+FROM maven:3.8-openjdk-17
 
 WORKDIR /app
 
+ADD . ./
+
+# generate jar
+RUN mvn package
+
+RUN mv target/piService-*.jar app.jar
+
 EXPOSE 31415
 
-COPY target/*.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+CMD java -jar ./app.jar
