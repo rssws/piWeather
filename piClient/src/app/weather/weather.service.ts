@@ -12,7 +12,7 @@ import {catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class WeatherService {
-  private baseUrl = 'http://localhost:8080/https://pi.zhongpin.wang/api/';
+  private baseUrl = 'http://localhost/api/';
   // private baseUrl = 'https://pi.zhongpin.wang/api/';
   private piServiceApiKey = '0jbQxUhhH5WUnp66BUuEkSSrqQExxg7DLNXVPRR0XVFWkOgOEBY30IZ8lg7Ej6EN';
 
