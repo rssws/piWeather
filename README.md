@@ -47,8 +47,8 @@ Here, let's take raspberry pi and my own setup as an example.
    I bought a TFT LCD display on Amazon (https://www.amazon.de/gp/product/B06W55HBTX).
    I don't recommend though to buy this one. There are dozens of other displays, find the one you like the most.
 
-**Kind reminder:** *If you still want to buy the above model.*
-*Be very careful when you attach the screen to the rasp-pi board since the wiring on the side of the touch screen is very fragile and can be easily broken! Don't ask me how I know this. :)*
+   **Kind reminder:** *If you still want to buy the above model.*
+   *Be very careful when you attach the screen to the rasp-pi board since the wiring on the side of the touch screen is very fragile and can be easily broken! Don't ask me how I know this. :)*
 
 2. Connect your rasp-pi to wifi and make sure it can reconnect to the internet after each restart.
 
@@ -88,14 +88,14 @@ Prerequisites: Install docker and docker-compose.
    This project can work with their free plan. Use it for non-commercial purposes!
 
 3. Build the images locally:
-```bash
-docker-compose build
-```
+   ```bash
+   docker-compose build
+   ```
 
 4. Bring up the containers:
-```bash
-docker-compose up -d
-```
+   ```bash
+   docker-compose up -d
+   ```
 
 Then you can access the frontend via `http://localhost:80`
 and the backend via `http://localhost:80/api/`.
