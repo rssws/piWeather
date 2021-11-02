@@ -7,14 +7,15 @@ import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
 import {Injectable} from '@angular/core';
 import {HourlyWeatherResponse} from '../model/weather/hourly-weather-response';
 import {catchError} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
-  private baseUrl = 'http://localhost:8080/https://pi.zhongpin.wang/api/';
+  private baseUrl = 'http://localhost/api/';
   // private baseUrl = 'https://pi.zhongpin.wang/api/';
-  private piServiceApiKey = '0jbQxUhhH5WUnp66BUuEkSSrqQExxg7DLNXVPRR0XVFWkOgOEBY30IZ8lg7Ej6EN';
+  private piServiceApiKey = process.env.NG_APP_PI_API;
 
   constructor(private http: HttpClient) {}
 
