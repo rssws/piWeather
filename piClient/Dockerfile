@@ -3,6 +3,9 @@ FROM node:lts-alpine
 # set working directory
 WORKDIR /app
 
+ARG PI_API
+ENV PI_API $PI_API
+
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 

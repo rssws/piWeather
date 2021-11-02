@@ -15,7 +15,7 @@ import {environment} from '../../environments/environment';
 export class WeatherService {
   private baseUrl = 'http://localhost/api/';
   // private baseUrl = 'https://pi.zhongpin.wang/api/';
-  private piServiceApiKey = environment.apiKey;
+  private piServiceApiKey = process.env.NG_APP_PI_API;
 
   constructor(private http: HttpClient) {}
 
