@@ -110,9 +110,7 @@ Go to [piClient](./piClient) to see the default Angular helper.
 #### piService
 Maven is used to manage the backend.
 
-Use `mvn install` to install all dependencies.
-
-Use `mvn package` to generate the `jar` file. The file can be found in the `target` folder.
+Use `mvn install` to install all dependencies and generate the `jar` file. The file can be found in the `target` folder.
 
 ## Gallery
 Let's see some pictures taken from the raspberry pi.
