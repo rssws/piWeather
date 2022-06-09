@@ -8,9 +8,8 @@ describe('WeatherHourlyChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeatherHourlyChartComponent ]
-    })
-    .compileComponents();
+      declarations: [WeatherHourlyChartComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
