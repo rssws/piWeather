@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 services:
   nginx:
     image: nginx:latest
@@ -14,16 +14,20 @@ services:
       context: ./piClient
       args:
         PI_API: "${PI_API}"
-    image: pi-client:latest
+        VERSION: "${VERSION}"
+    image: pi-client:${VERSION}
     restart: unless-stopped
-    #ports:
-    #  - "8080:8080"
+    ports:
+      - "8080:8080"
   pi-service:
-    build: ./piService
-    image: pi-service:latest
+    build:
+      context: ./piService
+      args:
+        VERSION: "${VERSION}"
+    image: pi-service:${VERSION}
     restart: unless-stopped
     environment:
       - "OPEN_WEATHER_API=${OPEN_WEATHER_API}"
       - "PI_API=${PI_API}"
-    #ports:
-    #  - "31415:31415"
+    ports:
+      - "31415:31415"

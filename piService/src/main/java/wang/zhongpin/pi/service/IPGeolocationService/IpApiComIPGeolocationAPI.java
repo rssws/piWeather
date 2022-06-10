@@ -10,7 +10,6 @@ import wang.zhongpin.pi.model.CachePool;
 import wang.zhongpin.pi.model.IPGeolocation.IPGeolocation;
 import wang.zhongpin.pi.model.IPGeolocation.IPGeolocationResponse;
 import wang.zhongpin.pi.model.ResponseStatus;
-
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;

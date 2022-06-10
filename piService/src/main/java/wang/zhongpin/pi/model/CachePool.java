@@ -2,7 +2,6 @@ package wang.zhongpin.pi.model;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class CachePool <T> {

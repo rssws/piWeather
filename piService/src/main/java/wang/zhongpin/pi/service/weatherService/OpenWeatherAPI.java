@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import wang.zhongpin.pi.model.CachePool;
 import wang.zhongpin.pi.model.weather.*;
 import wang.zhongpin.pi.model.ResponseStatus;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -92,8 +91,8 @@ public class OpenWeatherAPI extends WeatherAPI {
         }
 
         // use the free onecall api provided by openweathermap.org
-        System.out.println("lat:" + coord.getLat());
-        System.out.println("lat:" + coord.getLon());
+        // System.out.println("lat:" + coord.getLat());
+        // System.out.println("lat:" + coord.getLon());
 
         Future<HttpResponse<JsonNode>> future = Unirest.get(BASE_URL + "onecall")
                 .queryString("lat", coord.getLat())

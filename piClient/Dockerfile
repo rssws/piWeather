@@ -1,26 +1,35 @@
-FROM node:lts-alpine
+# BUILD
+FROM node:lts-alpine as build
 
 # set working directory
-WORKDIR /app
+WORKDIR /build
 
 ARG PI_API
 ENV PI_API $PI_API
+ARG VERSION
 
-# add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# add app
-ADD . ./
-
 # install app dependencies
-RUN npm install
+COPY ./package.json ./package-lock.json ./
+RUN sed -i -E 's/(\ *"version": )"dev",/\1"'"$VERSION"'",/g' package.json
+RUN sed -i -E 's/(\ *"version": )"dev",/\1"'"$VERSION"'",/g' package-lock.json
+RUN npm ci
 RUN npm install -g @angular/cli
-RUN npm install -g serve
+
+COPY ./script ./script
+COPY ./tsconfig.json ./tsconfig.app.json ./.env.production ./angular.json ./
+COPY ./src ./src
 
 # build the app
-RUN ng build --prod
+RUN npm run build:prod
 
-EXPOSE 8080
+# PRODUCTION
+FROM node:lts-slim
+WORKDIR /piClient
+COPY --from=build /build/dist .
+
+RUN npm install -g serve
 
 # use serve to host the static file
-CMD serve -s ./dist/piClient -l 8080
+CMD serve -l 8080 ./piClient

@@ -1,3 +1,2 @@
-**/.git
-**/.idea
-**/target
+target
+Dockerfile
