@@ -10,7 +10,6 @@ import wang.zhongpin.pi.service.IPGeolocationService.IPGeolocationAPI;
 import wang.zhongpin.pi.service.IPGeolocationService.IpApiComIPGeolocationAPI;
 import javax.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = "*", maxAge = 1800)
 @RestController
 @RequestMapping("/ipGeolocation")
 public class IPGeolocationController {

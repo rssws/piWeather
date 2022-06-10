@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import wang.zhongpin.pi.model.CachePool;
 import wang.zhongpin.pi.model.weather.*;
 import wang.zhongpin.pi.model.ResponseStatus;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;

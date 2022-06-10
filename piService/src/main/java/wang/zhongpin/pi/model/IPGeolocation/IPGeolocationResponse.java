@@ -2,8 +2,6 @@ package wang.zhongpin.pi.model.IPGeolocation;
 
 import wang.zhongpin.pi.model.Response;
 import wang.zhongpin.pi.model.ResponseStatus;
-import wang.zhongpin.pi.model.weather.Coord;
-import wang.zhongpin.pi.model.weather.Weather;
 
 public class IPGeolocationResponse extends Response {
     private IPGeolocation ipGeolocation;
