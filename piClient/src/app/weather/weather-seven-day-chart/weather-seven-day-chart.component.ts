@@ -33,8 +33,9 @@ export class WeatherSevenDayChartComponent implements OnInit {
     responsive: true,
     scales: {
       x: {
+        offset: false,
         ticks: { color: 'white', font: { size: 15 } },
-        grid: { color: 'rgba(255,255,255,0.1)', offset: false },
+        grid: { color: 'rgba(255,255,255,0.1)' },
       },
       'y-axis-0': {
         position: 'left',

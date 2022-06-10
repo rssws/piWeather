@@ -35,6 +35,7 @@ export class WeatherHourlyChartComponent implements OnInit {
     responsive: true,
     scales: {
       x: {
+        offset: false,
         ticks: {
           color: 'white',
           font: {
@@ -42,7 +43,7 @@ export class WeatherHourlyChartComponent implements OnInit {
           },
           stepSize: 1,
         },
-        grid: { color: 'rgba(255,255,255,0.1)', offset: false },
+        grid: { color: 'rgba(255,255,255,0.1)' },
       },
       'y-axis-0': {
         position: 'left',
