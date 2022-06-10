@@ -13,7 +13,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install app dependencies
 COPY ./package.json ./yarn.lock ./
 RUN sed -i -E 's/(\ *"version": )"dev",/\1"'"$VERSION"'",/g' package.json
-RUN sed -i -E 's/(\ *"version": )"dev",/\1"'"$VERSION"'",/g' package-lock.json
 RUN yarn install --frozen-lockfile
 RUN yarn add -g @angular/cli
 
