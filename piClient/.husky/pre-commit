@@ -1,2 +1,2 @@
 cd piClient
-npm run lint:fix
+yarn lint:fix

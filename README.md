@@ -120,22 +120,23 @@ edit the Nginx configuration file `nginx.conf`.
 
 #### piClient
 
-NPM is used to manage the frontend.
+`yarn` is used to manage the frontend.
+Use `npm install --global yarn` to install `yarn`.
 
-Before you start, you need to run `npm run prepare` to initialize `husky`.
+Before you start, you need to run `yarn prepare` to initialize `husky`.
 
 Setup the `.env.development` and / or `.env.production` file first before you run the app.
 Do not modify `.env` file directly since it will be overwritten!
 
-Use `npm run start` to launch a development server.
+Use `yarn start` to launch a development server.
 
-Use `npm run build:dev` to build a development version of the app.
+Use `yarn build:dev` to build a development version of the app.
 
-Use `npm run build:prod` to build a production version of the app.
+Use `yarn build:prod` to build a production version of the app.
 
-Use `npm run build:dev` to build a development version of the app.
+Use `yarn build:dev` to build a development version of the app.
 
-Use `npm run lint:fix` to execute linter and prettier.
+Use `yarn lint:fix` to execute linter and prettier.
 
 Please avoid using `ng` command directly since the frontend depends on `.env`, which will by dynamically generated.
 
