@@ -1,6 +1,6 @@
 {
   "name": "pi-client",
-  "version": "0.0.9",
+  "version": "dev",
   "private": true,
   "scripts": {
     "ng": "ng",

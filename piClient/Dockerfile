@@ -6,11 +6,14 @@ WORKDIR /build
 
 ARG PI_API
 ENV PI_API $PI_API
+ARG VERSION
 
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY ./package.json ./package-lock.json ./
+RUN sed -i -E 's/(\ *"version": )"dev",/\1"'"$VERSION"'",/g' package.json
+RUN sed -i -E 's/(\ *"version": )"dev",/\1"'"$VERSION"'",/g' package-lock.json
 RUN npm ci
 RUN npm install -g @angular/cli
 
