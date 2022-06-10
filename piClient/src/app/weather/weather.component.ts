@@ -39,7 +39,7 @@ export class WeatherComponent implements OnInit {
     this.updateCityName();
 
     setInterval(() => {
-      this.currentTimer += 1;
+      this.currentTimer += 2;
       if (this.currentTimer === 1000) {
         this.currentTimer = 0;
         if (!this.locationLoading) {

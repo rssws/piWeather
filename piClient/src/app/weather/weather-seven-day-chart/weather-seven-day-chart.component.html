@@ -1,28 +1,27 @@
 <div class="d-flex align-self-stretch justify-content-center align-items-stretch h-100">
-  <div class="flex-column d-flex w-100 h-100" *ngIf="!dailyWeatherResponseLoading else loading">
+  <div class="flex-column d-flex w-100 h-100" *ngIf="!dailyWeatherResponseLoading; else loading">
     <div class="px-3 py-2 flex-row justify-content-between d-flex">
       <div class="align-self-center display-6 badge badge-info">7-Day Forecast</div>
-      <div class="align-self-center display-6 badge badge-dark">{{this.city}}</div>
+      <div class="align-self-center display-6 badge badge-dark">{{ this.city }}</div>
     </div>
-    <div class="px-2 pb-3 pt-1 mx-2 flex-grow-1"
-         [style.padding-vertical]="'5vh'">
-      <canvas baseChart width="100%"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [plugins]="lineChartPlugins"
-              [chartType]="lineChartType"></canvas>
+    <div class="px-2 pb-3 pt-1 mx-2 flex-grow-1" [style.padding-vertical]="'5vh'">
+      <canvas
+        baseChart
+        width="100%"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [type]="lineChartType"
+        [plugins]="lineChartPlugins"
+      ></canvas>
     </div>
   </div>
 
   <ng-template #loading>
     <div class="d-flex flex-column justify-content-center">
-      <div class="spinner-grow text-light mx-auto" style="width: 3rem; height: 3rem;" role="status">
+      <div class="spinner-grow text-light mx-auto" style="width: 3rem; height: 3rem" role="status">
         <span class="sr-only">Loading...</span>
       </div>
-      <div class="mx-auto p-3" *ngIf="errorMessage !== undefined">{{errorMessage}}</div>
+      <div class="mx-auto p-3" *ngIf="errorMessage !== undefined">{{ errorMessage }}</div>
     </div>
   </ng-template>
 </div>

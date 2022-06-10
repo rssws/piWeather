@@ -1,13 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
-import { ChartData, ChartDataSets, ChartLineOptions, ChartOptions, ChartType } from 'chart.js';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChartConfiguration, ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 import { Coord } from '../../model/weather/coord';
 import { DailyWeatherResponse } from '../../model/weather/daily-weather-response';
 import { WeatherService } from '../weather.service';
-import { finalize } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
-import { WeatherResponse } from '../../model/weather/weather-response';
-import { ResponseStatus } from '../../model/response-status.enum';
 
 @Component({
   selector: 'app-weather-seven-day-chart',
@@ -25,49 +22,42 @@ export class WeatherSevenDayChartComponent implements OnInit {
 
   constructor(private weatherService: WeatherService) {}
 
-  public lineChartData: ChartDataSets[] = [];
-  public lineChartLabels: Label[];
+  public lineChartData: ChartConfiguration['data'] = { datasets: [], labels: [] };
   public lineChartOptions: ChartOptions = {
+    elements: {
+      line: {
+        tension: 0.3,
+      },
+    },
     maintainAspectRatio: false,
     responsive: true,
-    legend: {
-      labels: { fontColor: 'white' },
-    },
     scales: {
-      xAxes: [
-        {
-          ticks: { fontColor: 'white', fontSize: 15 },
-          gridLines: { color: 'rgba(255,255,255,0.1)' },
+      x: {
+        ticks: { color: 'white', font: { size: 15 } },
+        grid: { color: 'rgba(255,255,255,0.1)', offset: false },
+      },
+      'y-axis-0': {
+        position: 'left',
+        beginAtZero: true,
+        ticks: {
+          precision: 0,
+          color: 'white',
+          font: { size: 15 },
+          callback: (value, index, values) => value + '°',
         },
-      ],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'left',
-          ticks: {
-            // There is no precision attribute in ng2-charts but in Chart.js. So ignore the warning.
-            // @ts-ignore
-            precision: 0,
-            beginAtZero: true,
-            fontColor: 'white',
-            fontSize: 15,
-            callback: (value, index, values) => value + '°',
-          },
-          gridLines: { color: 'rgba(255,255,255,0.1)' },
+        grid: { color: 'rgba(255,255,255,0.1)' },
+      },
+      'y-axis-1': {
+        position: 'right',
+        max: 1,
+        beginAtZero: true,
+        ticks: {
+          stepSize: 0.2,
+          color: 'white',
+          font: { size: 10 },
+          callback: (value, index, values) => (value as number) * 100 + '%',
         },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          ticks: {
-            max: 1,
-            stepSize: 0.2,
-            beginAtZero: true,
-            fontColor: 'white',
-            fontSize: 10,
-            callback: (value, index, values) => (value as number) * 100 + '%',
-          },
-        },
-      ],
+      },
     },
     layout: {
       padding: {
@@ -77,14 +67,19 @@ export class WeatherSevenDayChartComponent implements OnInit {
         bottom: 30,
       },
     },
+    plugins: {
+      legend: {
+        labels: { color: 'white' },
+      },
+    },
   };
 
   images: string[];
   public lineChartPlugins = [
     {
       afterDraw: (chart) => {
-        const ctx = chart.chart.ctx;
-        const xAxis = chart.scales['x-axis-0'];
+        const ctx = chart.ctx;
+        const xAxis = chart.scales['x'];
         const yAxis = chart.scales['y-axis-0'];
         xAxis.ticks.forEach((value, index) => {
           const x = xAxis.getPixelForTick(index);
@@ -95,32 +90,6 @@ export class WeatherSevenDayChartComponent implements OnInit {
     },
   ];
 
-  public lineChartColors: Color[] = [
-    {
-      backgroundColor: 'rgba(63,165,255,0.2)',
-      borderColor: 'rgba(63,165,255,1)',
-      pointBackgroundColor: 'rgba(63,165,255,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(63,165,255,1)',
-    },
-    {
-      backgroundColor: 'rgba(255,182,0,0.2)',
-      borderColor: 'rgb(255,182,0)',
-      pointBackgroundColor: 'rgba(255,182,0,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(255,182,0,1)',
-    },
-    {
-      backgroundColor: 'rgba(205,229,255,0.6)',
-      borderColor: 'rgb(205,229,255)',
-      pointBackgroundColor: 'rgba(205,229,255)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(205,229,255)',
-    },
-  ];
   public lineChartLegend = true;
   public lineChartType: ChartType = 'line';
 
@@ -162,9 +131,40 @@ export class WeatherSevenDayChartComponent implements OnInit {
   }
 
   prepareChart(dailyWeatherResponse: DailyWeatherResponse): void {
-    const tempMax: ChartDataSets = { data: [], label: 'max', fill: 'origin' };
-    const tempMin: ChartDataSets = { data: [], label: 'min', fill: 'origin' };
-    const pop: ChartDataSets = { data: [], label: 'Probability of precipitation', type: 'bar', yAxisID: 'y-axis-1' };
+    const tempMax: ChartDataset = {
+      data: [],
+      label: 'max',
+      fill: 'origin',
+      backgroundColor: 'rgba(63,165,255,0.2)',
+      borderColor: 'rgba(63,165,255,1)',
+      pointBackgroundColor: 'rgba(63,165,255,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(63,165,255,1)',
+    };
+    const tempMin: ChartDataset = {
+      data: [],
+      label: 'min',
+      fill: 'origin',
+      backgroundColor: 'rgba(255,182,0,0.2)',
+      borderColor: 'rgb(255,182,0)',
+      hoverBackgroundColor: '#fff',
+      hoverBorderColor: 'rgb(63,165,255)',
+      pointBackgroundColor: 'rgb(63,165,255)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(63,165,255)',
+    };
+    const pop: ChartDataset = {
+      data: [],
+      label: 'Probability of precipitation',
+      type: 'bar',
+      yAxisID: 'y-axis-1',
+      backgroundColor: 'rgba(205,229,255,0.6)',
+      borderColor: 'rgb(205,229,255)',
+      hoverBackgroundColor: '#fff',
+      hoverBorderColor: 'rgba(205,229,255)',
+    };
     tempMax.data = dailyWeatherResponse.dailyWeather.weathers.map((weather) =>
       parseFloat((weather.tempMax - 273.15).toFixed(1))
     );
@@ -172,7 +172,7 @@ export class WeatherSevenDayChartComponent implements OnInit {
       parseFloat((weather.tempMin - 273.15).toFixed(1))
     );
     pop.data = dailyWeatherResponse.dailyWeather.weathers.map((weather) => weather.pop);
-    this.lineChartLabels = dailyWeatherResponse.dailyWeather.weathers.map((weather, index) => {
+    const lineChartLabels = dailyWeatherResponse.dailyWeather.weathers.map((weather, index) => {
       if (index === 0) {
         return 'Today';
       }
@@ -182,6 +182,7 @@ export class WeatherSevenDayChartComponent implements OnInit {
     this.images = dailyWeatherResponse.dailyWeather.weathers.map(
       (weather) => 'https://openweathermap.org/img/wn/' + weather.icon + '.png'
     );
-    this.lineChartData.push(tempMin, tempMax, pop);
+    this.lineChartData.datasets.push(tempMin, tempMax, pop);
+    this.lineChartData.labels.push(...lineChartLabels);
   }
 }

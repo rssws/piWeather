@@ -24,6 +24,15 @@
             "scripts": []
           },
           "configurations": {
+            "defaultConfiguration": "development",
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -59,6 +68,9 @@
             "browserTarget": "piClient:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "piClient:build:development"
+            },
             "production": {
               "browserTarget": "piClient:build:production"
             }

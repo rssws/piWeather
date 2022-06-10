@@ -2,12 +2,9 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Coord } from '../../model/weather/coord';
 import { HourlyWeatherResponse } from '../../model/weather/hourly-weather-response';
 import { WeatherService } from '../weather.service';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { BaseChartDirective, Color, Label } from 'ng2-charts';
-import { finalize } from 'rxjs/operators';
+import { ChartConfiguration, ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 import { DatePipe } from '@angular/common';
-import { WeatherResponse } from '../../model/weather/weather-response';
-import { ResponseStatus } from '../../model/response-status.enum';
 
 @Component({
   selector: 'app-weather-hourly-chart',
@@ -27,53 +24,50 @@ export class WeatherHourlyChartComponent implements OnInit {
 
   constructor(private weatherService: WeatherService) {}
 
-  public lineChartData: ChartDataSets[] = [];
-  public lineChartLabels: Label[];
-  public lineChartOptions: ChartOptions = {
+  public lineChartData: ChartConfiguration['data'] = { datasets: [], labels: [] };
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.3,
+      },
+    },
     maintainAspectRatio: false,
     responsive: true,
-    legend: {
-      labels: { fontColor: 'white' },
-    },
     scales: {
-      xAxes: [
-        {
-          ticks: {
-            fontColor: 'white',
-            fontSize: 11,
-            stepSize: 1,
+      x: {
+        ticks: {
+          color: 'white',
+          font: {
+            size: 11,
           },
-          gridLines: { color: 'rgba(255,255,255,0.1)' },
+          stepSize: 1,
         },
-      ],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'left',
-          ticks: {
-            // There is no precision attribute in ng2-charts but in Chart.js. So ignore the warning.
-            // @ts-ignore
-            precision: 0,
-            beginAtZero: true,
-            fontColor: 'white',
-            fontSize: 15,
-            callback: (value, index, values) => value + '°',
+        grid: { color: 'rgba(255,255,255,0.1)', offset: false },
+      },
+      'y-axis-0': {
+        position: 'left',
+        beginAtZero: true,
+        ticks: {
+          precision: 0,
+          color: 'white',
+          font: {
+            size: 15,
           },
-          gridLines: { color: 'rgba(255,255,255,0.1)' },
+          callback: (value, index, values) => value + '°',
         },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          ticks: {
-            max: 1,
-            stepSize: 0.2,
-            beginAtZero: true,
-            fontColor: 'white',
-            fontSize: 10,
-            callback: (value, index, values) => (value as number) * 100 + '%',
-          },
+        grid: { color: 'rgba(255,255,255,0.1)' },
+      },
+      'y-axis-1': {
+        position: 'right',
+        beginAtZero: true,
+        max: 1,
+        ticks: {
+          stepSize: 0.2,
+          color: 'white',
+          font: { size: 10 },
+          callback: (value, index, values) => (value as number) * 100 + '%',
         },
-      ],
+      },
     },
     layout: {
       padding: {
@@ -83,14 +77,19 @@ export class WeatherHourlyChartComponent implements OnInit {
         bottom: 15,
       },
     },
+    plugins: {
+      legend: {
+        labels: { color: 'white' },
+      },
+    },
   };
 
   images: string[];
   public lineChartPlugins = [
     {
       afterDraw: (chart) => {
-        const ctx = chart.chart.ctx;
-        const xAxis = chart.scales['x-axis-0'];
+        const ctx = chart.ctx;
+        const xAxis = chart.scales['x'];
         const yAxis = chart.scales['y-axis-0'];
         xAxis.ticks.forEach((value, index) => {
           const x = xAxis.getPixelForTick(index);
@@ -102,24 +101,6 @@ export class WeatherHourlyChartComponent implements OnInit {
     },
   ];
 
-  public lineChartColors: Color[] = [
-    {
-      backgroundColor: 'rgba(63,165,255,0.2)',
-      borderColor: 'rgb(63,165,255,1)',
-      pointBackgroundColor: 'rgb(63,165,255)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(63,165,255)',
-    },
-    {
-      backgroundColor: 'rgba(205,229,255,0.6)',
-      borderColor: 'rgb(205,229,255)',
-      pointBackgroundColor: 'rgba(205,229,255)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(205,229,255)',
-    },
-  ];
   public lineChartLegend = true;
   public lineChartType: ChartType = 'line';
 
@@ -161,11 +142,32 @@ export class WeatherHourlyChartComponent implements OnInit {
 
   prepareChart(hourlyWeatherResponse: HourlyWeatherResponse): void {
     const weathers = hourlyWeatherResponse.hourlyWeather.weathers.slice(0, this.dataLength);
-    const temp: ChartDataSets = { data: [], label: 'Temperature' };
-    const pop: ChartDataSets = { data: [], label: 'Probability of precipitation', type: 'bar', yAxisID: 'y-axis-1' };
+    const temp: ChartDataset = {
+      data: [],
+      label: 'Temperature',
+      backgroundColor: 'rgba(63,165,255,0.2)',
+      borderColor: 'rgb(63,165,255,1)',
+      hoverBackgroundColor: '#fff',
+      hoverBorderColor: 'rgb(63,165,255)',
+      pointBackgroundColor: 'rgb(63,165,255)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(63,165,255)',
+    };
+    const pop: ChartDataset = {
+      data: [],
+      label: 'Probability of precipitation',
+      type: 'bar',
+      yAxisID: 'y-axis-1',
+      backgroundColor: 'rgba(205,229,255,0.6)',
+      borderColor: 'rgb(205,229,255)',
+      hoverBackgroundColor: '#fff',
+      hoverBorderColor: 'rgba(205,229,255)',
+    };
+
     temp.data = weathers.map((weather) => parseFloat((weather.temp - 273.15).toFixed(1)));
     pop.data = weathers.map((weather) => weather.pop);
-    this.lineChartLabels = weathers.map((weather, index) => {
+    const lineChartLabels = weathers.map((weather, index) => {
       if (index === 0) {
         return 'now';
       }
@@ -173,6 +175,7 @@ export class WeatherHourlyChartComponent implements OnInit {
     });
 
     this.images = weathers.map((weather) => 'https://openweathermap.org/img/wn/' + weather.icon + '.png');
-    this.lineChartData.push(temp, pop);
+    this.lineChartData.datasets.push(temp, pop);
+    this.lineChartData.labels.push(...lineChartLabels);
   }
 }

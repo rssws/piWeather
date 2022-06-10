@@ -92,8 +92,8 @@ public class OpenWeatherAPI extends WeatherAPI {
         }
 
         // use the free onecall api provided by openweathermap.org
-        System.out.println("lat:" + coord.getLat());
-        System.out.println("lat:" + coord.getLon());
+        // System.out.println("lat:" + coord.getLat());
+        // System.out.println("lat:" + coord.getLon());
 
         Future<HttpResponse<JsonNode>> future = Unirest.get(BASE_URL + "onecall")
                 .queryString("lat", coord.getLat())

@@ -10,39 +10,13 @@ import { HourlyWeatherResponse } from '../model/weather/hourly-weather-response'
   providedIn: 'root',
 })
 export class WeatherService {
-  private baseUrl = 'http://localhost/api/';
+  private baseUrl = process.env.NODE_ENV === 'production' ? '/api/' : 'http://localhost:31415/';
   // private baseUrl = 'https://pi.zhongpin.wang/api/';
   private piServiceApiKey = process.env.NG_APP_PI_API;
 
   constructor(private http: HttpClient) {}
 
-  // public getWeatherResponseByIP(): Observable<WeatherResponse> {
-  //   return this.http
-  //     .get<WeatherResponse>(
-  //       this.baseUrl + 'weather/ip/' + this.piServiceApiKey);
-  // }
-
   public getWeatherResponseByCity(city: string): Observable<WeatherResponse> {
-    // const response: Observable<object>[] = [];
-    // for (let i = 0; i < 10; i++) {
-    //   try{
-    //     response.push(this.http
-    //       .get<WeatherResponse>(
-    //         'http://localhost:8080/https://openweathermap.org/data/2.5/weather?id=' + (5128581 + i).toString() + '&units=metric&appid=439d4b804bc8187953eb36d2a8c26a02'));
-    //   } catch (e) {
-    //     console.log(e.getMessage());
-    //   }
-    // }
-    //
-    // response.forEach(o => {
-    //   o.subscribe(
-    //   r => {
-    //     console.log(r);
-    //   }, error => {
-    //     return;
-    //     });
-    // });
-
     return this.http.get<WeatherResponse>(this.baseUrl + 'weather/city/' + city + '/' + this.piServiceApiKey);
   }
 

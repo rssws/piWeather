@@ -10,15 +10,17 @@ ENV PI_API $PI_API
 ENV PATH /app/node_modules/.bin:$PATH
 
 # add app
-ADD . ./
+ADD package.json .
 
 # install app dependencies
 RUN npm install
 RUN npm install -g @angular/cli
 RUN npm install -g serve
 
+ADD . .
+
 # build the app
-RUN ng build --prod
+RUN ng build --configuration production
 
 EXPOSE 8080
 
