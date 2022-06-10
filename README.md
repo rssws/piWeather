@@ -143,9 +143,7 @@ Please avoid using `ng` command directly since the frontend depends on `.env`, w
 
 Maven is used to manage the backend.
 
-Use `mvn install` to install all dependencies.
-
-Use `mvn package` to generate the `jar` file. The file can be found in the `target` folder.
+Use `mvn install` to install all dependencies and generate the `jar` file. The file can be found in the `target` folder.
 
 Use `mvn spring-boot:run -Dspring-boot.run.profiles=dev` to launch the server with `dev` profile.
 You might need to create this file first and specify the `apiKey`.
