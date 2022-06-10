@@ -138,6 +138,8 @@ export class WeatherSevenDayChartComponent implements OnInit {
       fill: 'origin',
       backgroundColor: 'rgba(63,165,255,0.2)',
       borderColor: 'rgba(63,165,255,1)',
+      hoverBackgroundColor: '#fff',
+      hoverBorderColor: 'rgb(63,165,255,1)',
       pointBackgroundColor: 'rgba(63,165,255,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
@@ -150,11 +152,11 @@ export class WeatherSevenDayChartComponent implements OnInit {
       backgroundColor: 'rgba(255,182,0,0.2)',
       borderColor: 'rgb(255,182,0)',
       hoverBackgroundColor: '#fff',
-      hoverBorderColor: 'rgb(63,165,255)',
-      pointBackgroundColor: 'rgb(63,165,255)',
+      hoverBorderColor: 'rgb(255,182,0)',
+      pointBackgroundColor: 'rgb(255,182,0)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgb(63,165,255)',
+      pointHoverBorderColor: 'rgb(255,182,0)',
     };
     const pop: ChartDataset = {
       data: [],
