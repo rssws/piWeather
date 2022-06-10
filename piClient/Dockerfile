@@ -20,7 +20,7 @@ RUN npm install -g serve
 ADD . .
 
 # build the app
-RUN ng build --configuration production
+RUN npm run build:prod
 
 EXPOSE 8080
 
