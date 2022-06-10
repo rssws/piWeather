@@ -14,7 +14,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./package.json ./yarn.lock ./
 RUN sed -i -E 's/(\ *"version": )"dev",/\1"'"$VERSION"'",/g' package.json
 RUN yarn install --frozen-lockfile
-RUN yarn add -g @angular/cli
+RUN yarn global add @angular/cli
 
 COPY ./script ./script
 COPY ./tsconfig.json ./tsconfig.app.json ./.env.production ./angular.json ./
@@ -28,7 +28,7 @@ FROM node:lts-slim
 WORKDIR /piClient
 COPY --from=build /build/dist .
 
-RUN yarn add -g serve
+RUN yarn global add serve
 
 # use serve to host the static file
 CMD serve -l 8080 ./piClient
