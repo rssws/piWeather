@@ -99,11 +99,22 @@ Prerequisites: `docker` (and `docker compose`)
    Apply for a key on their website if you don't have any.
    This project can work with their free plan. Use it for non-commercial purposes!
 
-3. Build the images locally:
+3. Get the docker images:
+   1. Pull the image directly:
 
-   ```bash
-   docker compose build
-   ```
+      ```bash
+      docker compose pull
+      ```
+      
+      **Docker Hub:** 
+      [pi-client](https://hub.docker.com/repository/docker/rssws/pi-client),
+      [pi-service](https://hub.docker.com/repository/docker/rssws/pi-service)
+
+   2. Or build the images locally:
+
+      ```bash
+      docker compose build
+      ```
 
 4. Bring up the containers:
    ```bash
