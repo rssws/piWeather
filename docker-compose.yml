@@ -6,6 +6,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: on-failure
     depends_on:
       - pi-client
       - pi-service
@@ -15,8 +16,8 @@ services:
       args:
         PI_API: "${PI_API}"
         VERSION: "${VERSION}"
-    image: pi-client:${VERSION}
-    restart: unless-stopped
+    image: rssws/pi-client:${VERSION}
+    restart: on-failure
     # ports:
     #   - "8080:8080"
   pi-service:
@@ -24,8 +25,8 @@ services:
       context: ./piService
       args:
         VERSION: "${VERSION}"
-    image: pi-service:${VERSION}
-    restart: unless-stopped
+    image: rssws/pi-service:${VERSION}
+    restart: on-failure
     environment:
       - "OPEN_WEATHER_API=${OPEN_WEATHER_API}"
       - "PI_API=${PI_API}"
