@@ -145,11 +145,9 @@ Use `yarn build:dev` to build a development version of the app.
 
 Use `yarn build:prod` to build a production version of the app.
 
-Use `yarn build:dev` to build a development version of the app.
-
 Use `yarn lint:fix` to execute linter and prettier.
 
-Please avoid using `ng` command directly since the frontend depends on `.env`, which will by dynamically generated.
+Please avoid using `ng` command directly since the frontend build depends on `.env`, which will by dynamically generated.
 
 #### piService
 
