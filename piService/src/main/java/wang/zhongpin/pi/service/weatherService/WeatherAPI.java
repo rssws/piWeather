@@ -22,4 +22,3 @@ public abstract class WeatherAPI {
                         + "," + ipGeolocationResponse.getIpGeolocation().getCountryCode());
     }
 }
-

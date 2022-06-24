@@ -24,7 +24,7 @@ public class IPGeolocationController {
     }
 
     @GetMapping("/")
-    public Response getIPGeolocationResponse(@PathVariable String apiKey, HttpServletRequest request) {
+    public Response getIPGeolocationResponse(HttpServletRequest request) {
         if (requestLimitationNormal.isTooFrequent(Utils.getRemoteAddr(request))) {
             return new Response(ResponseStatus.ERROR, "Request sent too frequently! Please wait for one minute!");
         }

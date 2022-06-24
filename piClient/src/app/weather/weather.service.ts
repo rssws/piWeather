@@ -33,4 +33,8 @@ export class WeatherService {
       return this.http.get<string>(this.baseUrl + 'ipGeolocation/' + ipAddr);
     }
   }
+
+  public getLocalWeatherResponseByName(name: string): Observable<WeatherResponse> {
+    return this.http.get<WeatherResponse>(this.baseUrl + 'local-weather/' + name);
+  }
 }

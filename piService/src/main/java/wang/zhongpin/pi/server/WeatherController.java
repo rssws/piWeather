@@ -6,7 +6,6 @@ import wang.zhongpin.pi.model.RequestLimitation;
 import wang.zhongpin.pi.model.Response;
 import wang.zhongpin.pi.model.ResponseStatus;
 import wang.zhongpin.pi.model.weather.Coord;
-import wang.zhongpin.pi.service.ApiKeyService;
 import wang.zhongpin.pi.service.weatherService.OpenWeatherAPI;
 import wang.zhongpin.pi.service.weatherService.WeatherAPI;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +22,7 @@ public class WeatherController {
 
     @Autowired
     public WeatherController(
-            OpenWeatherAPI openWeatherAPI,
-            ApiKeyService apiKeyService) {
+            OpenWeatherAPI openWeatherAPI) {
         this.weatherAPI = openWeatherAPI;
     }
 

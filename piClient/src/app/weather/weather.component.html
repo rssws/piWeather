@@ -4,7 +4,8 @@
   [cityShort]="cityShort"
   (notifyCoord)="setCoord($event)"
   (notifyWeatherResponse)="setWeatherResponse($event)"
-  *ngIf="currentPage === 0 && !locationLoading">
+  *ngIf="currentPage === 0 && !locationLoading"
+>
 </app-weather-default>
 
 <app-weather-hourly-chart
@@ -12,7 +13,8 @@
   [city]="city"
   [coord]="coord"
   (notifyHourlyWeatherResponse)="setHourlyWeatherResponse($event)"
-  *ngIf="currentPage === 1 && !locationLoading">
+  *ngIf="currentPage === 1 && !locationLoading"
+>
 </app-weather-hourly-chart>
 
 <app-weather-seven-day-chart
@@ -20,15 +22,26 @@
   [city]="city"
   [coord]="coord"
   (notifyDailyWeatherResponse)="setDailyWeatherResponse($event)"
-  *ngIf="currentPage === 2 && !locationLoading">
+  *ngIf="currentPage === 2 && !locationLoading"
+>
 </app-weather-seven-day-chart>
 
+<app-weather-local
+  [localWeatherResponse]="localWeatherResponse"
+  [name]="localName"
+  (notifyLocalWeatherResponse)="setLocalWeatherResponse($event)"
+  *ngIf="currentPage === 3 && !locationLoading"
+>
+</app-weather-local>
 
-<div class="d-flex flex-column px-5 justify-content-center align-items-middle h-100" *ngIf="locationLoading && errorMessage !== undefined">
-  <p class="text-break align-middle display-6">{{this.errorMessage}}</p>
-  <p class="display-5">Retry in {{10 - (currentTimer / 100).toFixed(0)}} sec ...</p>
+<div
+  class="d-flex flex-column px-5 justify-content-center align-items-middle h-100"
+  *ngIf="locationLoading && errorMessage !== undefined"
+>
+  <p class="text-break align-middle display-6">{{ this.errorMessage }}</p>
+  <p class="display-5">Retry in {{ 10 - (currentTimer / 100).toFixed(0) }} sec ...</p>
 </div>
 
-<div class="fixed-bottom bg-secondary" style="height: 5px;">
-  <div class="bg-light" [style.height.%]="100" [style.width.%]='this.currentTimer/10'></div>
+<div class="fixed-bottom bg-secondary" style="height: 5px">
+  <div class="bg-light" [style.height.%]="100" [style.width.%]="this.currentTimer / 10"></div>
 </div>

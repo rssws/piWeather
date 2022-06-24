@@ -15,10 +15,12 @@ export class WeatherComponent implements OnInit {
   city = undefined;
   cityShort = undefined;
   coord = undefined;
+  localName = 'home';
 
   weatherResponse: WeatherResponse;
   dailyWeatherResponse: DailyWeatherResponse;
   hourlyWeatherResponse: HourlyWeatherResponse;
+  localWeatherResponse: WeatherResponse;
 
   errorMessage: string;
   locationLoading = true;
@@ -36,26 +38,27 @@ export class WeatherComponent implements OnInit {
       }
     });
 
-    this.updateCityName();
+    this.initWeather();
+    this.initLocalWeather();
 
     setInterval(() => {
       this.currentTimer += 1;
       if (this.currentTimer === 1000) {
         this.currentTimer = 0;
         if (!this.locationLoading) {
-          this.currentPage = (this.currentPage + 1) % 3;
+          this.currentPage = (this.currentPage + 1) % 4;
         }
       }
     }, 10);
   }
 
-  updateCityName(): void {
+  initWeather(): void {
     const jsonResponse$ = this.weatherService.getLocationByIP();
     jsonResponse$.subscribe(
       (response) => {
         const data = JSON.stringify(response);
         const jsonResponse = JSON.parse(data);
-        if (jsonResponse === null || jsonResponse === undefined || jsonResponse.ipGeolocation === undefined) {
+        if (!jsonResponse?.ipGeolocation) {
           this.city = 'Berlin, DE';
           this.cityShort = 'Berlin';
         } else {
@@ -77,7 +80,27 @@ export class WeatherComponent implements OnInit {
       },
       (error) => {
         this.errorMessage = '[Error Message]: ' + error.message;
-        setTimeout(this.updateCityName.bind(this), 10000);
+        setTimeout(this.initWeather.bind(this), 10000);
+      }
+    );
+  }
+
+  initLocalWeather() {
+    const jsonResponse$ = this.weatherService.getLocalWeatherResponseByName(this.localName);
+    jsonResponse$.subscribe(
+      (response) => {
+        const data = JSON.stringify(response);
+        const jsonResponse = JSON.parse(data);
+        if (jsonResponse) {
+          this.localWeatherResponse = jsonResponse;
+        }
+        setInterval(() => {
+          this.localWeatherResponse = undefined;
+        }, 1000 * 5);
+      },
+      (error) => {
+        this.errorMessage = '[Error Message]: ' + error.message;
+        setTimeout(this.initWeather.bind(this), 10000);
       }
     );
   }
@@ -94,5 +117,8 @@ export class WeatherComponent implements OnInit {
   }
   setHourlyWeatherResponse(hourlyWeatherResponse: HourlyWeatherResponse): void {
     this.hourlyWeatherResponse = hourlyWeatherResponse;
+  }
+  setLocalWeatherResponse(localWeatherResponse: WeatherResponse): void {
+    this.localWeatherResponse = localWeatherResponse;
   }
 }
