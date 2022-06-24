@@ -14,7 +14,6 @@ services:
     build:
       context: ./piClient
       args:
-        PI_API: "${PI_API}"
         VERSION: "${VERSION}"
     image: rssws/pi-client:${VERSION}
     restart: on-failure

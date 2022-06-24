@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import wang.zhongpin.pi.model.RequestLimitation;
 import wang.zhongpin.pi.model.Response;
 import wang.zhongpin.pi.model.ResponseStatus;
-import wang.zhongpin.pi.service.ApiKeyService;
 import wang.zhongpin.pi.service.IPGeolocationService.IPGeolocationAPI;
 import wang.zhongpin.pi.service.IPGeolocationService.IpApiComIPGeolocationAPI;
 import javax.servlet.http.HttpServletRequest;
@@ -14,24 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/ipGeolocation")
 public class IPGeolocationController {
     private final IPGeolocationAPI ipGeolocationAPI;
-    private final ApiKeyService apiKeyService;
 
     RequestLimitation requestLimitationNormal = new RequestLimitation(1000 * 60, 30);
     RequestLimitation requestLimitationSensitive = new RequestLimitation(1000 * 60, 5);
 
     @Autowired
     public IPGeolocationController(
-            IpApiComIPGeolocationAPI ipApiComIPGeolocationAPI,
-            ApiKeyService apiKeyService) {
+            IpApiComIPGeolocationAPI ipApiComIPGeolocationAPI) {
         this.ipGeolocationAPI = ipApiComIPGeolocationAPI;
-        this.apiKeyService = apiKeyService;
     }
 
-    @GetMapping("/{apiKey}")
+    @GetMapping("/")
     public Response getIPGeolocationResponse(@PathVariable String apiKey, HttpServletRequest request) {
-        if(!apiKeyService.validate(apiKey)) {
-            return new Response(ResponseStatus.ERROR, "Api key is not valid!");
-        }
         if (requestLimitationNormal.isTooFrequent(Utils.getRemoteAddr(request))) {
             return new Response(ResponseStatus.ERROR, "Request sent too frequently! Please wait for one minute!");
         }
@@ -43,15 +36,10 @@ public class IPGeolocationController {
         }
     }
 
-    @GetMapping("/{ip}/{apiKey}")
+    @GetMapping("/{ip}")
     public Response getIPGeolocationResponseByIP(
             @PathVariable String ip,
-            @PathVariable String apiKey,
             HttpServletRequest request) {
-
-        if (!apiKeyService.validate(apiKey)) {
-            return new Response(ResponseStatus.ERROR, "Api key is not valid!");
-        }
         if (requestLimitationSensitive.isTooFrequent(Utils.getRemoteAddr(request))) {
             return new Response(ResponseStatus.ERROR, "Request sent too frequently! Please wait for one minute!");
         }
@@ -62,5 +50,4 @@ public class IPGeolocationController {
             return new Response(ResponseStatus.ERROR, e.getMessage());
         }
     }
-
 }
