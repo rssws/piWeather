@@ -36,10 +36,9 @@ def loop():
             time.sleep(0.1)
         sendData(dht.humidity, dht.temperature)
         print("Humidity : %.2f, \t Temperature : %.2f \n" % (dht.humidity, dht.temperature))
-        time.sleep()
+        time.sleep(5)
 
 if __name__ == '__main__':
-
     load_dotenv()
     NAME = os.getenv('NAME')
     PI_SERVICE_URL = os.getenv('PI_SERVICE_URL')
@@ -50,4 +49,3 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         GPIO.cleanup()
         exit()  
-
