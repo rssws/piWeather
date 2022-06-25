@@ -1,15 +1,14 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {WeatherResponse} from '../../model/weather/weather-response';
-import {WeatherService} from '../weather.service';
-import {Coord} from '../../model/weather/coord';
-import {ResponseStatus} from '../../model/response-status.enum';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { WeatherResponse } from '../../model/weather/weather-response';
+import { WeatherService } from '../weather.service';
+import { Coord } from '../../model/weather/coord';
 
 @Component({
   selector: 'app-weather-default',
   templateUrl: './weather-default.component.html',
-  styleUrls: ['./weather-default.component.css']
+  styleUrls: ['./weather-default.component.css'],
 })
-export class WeatherDefaultComponent implements OnInit, OnChanges{
+export class WeatherDefaultComponent implements OnInit, OnChanges {
   @Input() weatherResponse: WeatherResponse;
   @Input() city: string;
   @Input() cityShort: string;
@@ -20,9 +19,7 @@ export class WeatherDefaultComponent implements OnInit, OnChanges{
   cityNameFontSize: string;
   errorMessage: string;
 
-  constructor(
-    private weatherService: WeatherService
-  ) { }
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {}
 
@@ -40,8 +37,8 @@ export class WeatherDefaultComponent implements OnInit, OnChanges{
 
   updateWeather(): void {
     const weatherResponse$ = this.weatherService.getWeatherResponseByCity(this.city);
-    weatherResponse$
-      .subscribe(r => {
+    weatherResponse$.subscribe(
+      (r) => {
         if (r.responseStatus.toString() !== 'SUCCESS') {
           this.weatherResponseLoading = true;
           this.errorMessage = r.responseMessage;
@@ -53,11 +50,13 @@ export class WeatherDefaultComponent implements OnInit, OnChanges{
         this.prepareFont();
         this.weatherResponseLoading = false;
         this.errorMessage = undefined;
-      }, error => {
+      },
+      (error) => {
         this.weatherResponseLoading = true;
         this.errorMessage = error.message;
         setTimeout(this.updateWeather.bind(this), 6000);
-      });
+      }
+    );
   }
 
   prepareFont(): void {

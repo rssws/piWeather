@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "80:80"
+      - "31414:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     restart: on-failure
@@ -14,7 +14,6 @@ services:
     build:
       context: ./piClient
       args:
-        PI_API: "${PI_API}"
         VERSION: "${VERSION}"
     image: rssws/pi-client:${VERSION}
     restart: on-failure

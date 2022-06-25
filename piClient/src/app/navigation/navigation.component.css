@@ -8,3 +8,11 @@
   font-size: 4vh;
 }
 
+.btn {
+  line-height: 0;
+}
+
+#nav-bar {
+  z-index: 10000;
+  position: relative;
+}

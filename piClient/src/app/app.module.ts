@@ -10,6 +10,9 @@ import { WeatherDefaultComponent } from './weather/weather-default/weather-defau
 import { NgChartsModule } from 'ng2-charts';
 import { WeatherSevenDayChartComponent } from './weather/weather-seven-day-chart/weather-seven-day-chart.component';
 import { WeatherHourlyChartComponent } from './weather/weather-hourly-chart/weather-hourly-chart.component';
+import { WeatherLocalComponent } from './weather/weather-local/weather-local.component';
+import { SettingsComponent } from './settings/settings.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -19,9 +22,11 @@ import { WeatherHourlyChartComponent } from './weather/weather-hourly-chart/weat
     WeatherDefaultComponent,
     WeatherSevenDayChartComponent,
     WeatherHourlyChartComponent,
+    WeatherLocalComponent,
+    SettingsComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, NgChartsModule],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,7 +8,6 @@ import wang.zhongpin.pi.service.IPGeolocationService.IpApiComIPGeolocationAPI;
 import java.util.concurrent.ExecutionException;
 
 public abstract class WeatherAPI {
-
     public abstract WeatherResponse getWeatherResponseByCity(String cityName) throws ExecutionException, InterruptedException, HttpException;
     public abstract WeatherResponse getWeatherResponseByCoord(Coord coord);
     public abstract WeatherResponse getWeatherResponseByZipCode(String zipCode);
@@ -23,4 +22,3 @@ public abstract class WeatherAPI {
                         + "," + ipGeolocationResponse.getIpGeolocation().getCountryCode());
     }
 }
-

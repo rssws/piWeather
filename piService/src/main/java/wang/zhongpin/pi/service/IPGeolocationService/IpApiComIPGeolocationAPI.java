@@ -36,7 +36,7 @@ public class IpApiComIPGeolocationAPI extends IPGeolocationAPI {
             Map.Entry<Long, IPGeolocationResponse> cache = ipGeolocationResponseCachePool.getCache(ipAddr);
             if(cache != null) {
                 IPGeolocationResponse ipGeolocationResponse = cache.getValue();
-                ipGeolocationResponse.responseMessage = "Last time updated: " + new Date(cache.getKey()).toString();
+                ipGeolocationResponse.responseMessage = "Last updated: " + new Date(cache.getKey()).toString();
                 return ipGeolocationResponse;
             }
         }

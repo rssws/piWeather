@@ -32,7 +32,7 @@ public class OpenWeatherAPI extends WeatherAPI {
         Map.Entry<Long, WeatherResponse> cache = weatherResponseCachePool.getCache(cityName);
         if(cache != null) {
             WeatherResponse weatherResponse = cache.getValue();
-            weatherResponse.responseMessage = "Last time updated: " + new Date(cache.getKey()).toString();
+            weatherResponse.responseMessage = "Last updated: " + new Date(cache.getKey()).toString();
             return weatherResponse;
         }
 
@@ -86,7 +86,7 @@ public class OpenWeatherAPI extends WeatherAPI {
         Map.Entry<Long, DailyWeatherResponse> cache = dailyWeatherResponseCachePool.getCache(coord.toString());
         if(cache != null) {
             DailyWeatherResponse dailyWeatherResponse = cache.getValue();
-            dailyWeatherResponse.responseMessage = "Last time updated: " + new Date(cache.getKey()).toString();
+            dailyWeatherResponse.responseMessage = "Last updated: " + new Date(cache.getKey()).toString();
             return dailyWeatherResponse;
         }
 
@@ -138,13 +138,13 @@ public class OpenWeatherAPI extends WeatherAPI {
         Map.Entry<Long, HourlyWeatherResponse> cache = hourlyWeatherResponseCachePool.getCache(coord.toString());
         if(cache != null) {
             HourlyWeatherResponse hourlyWeatherResponse = cache.getValue();
-            hourlyWeatherResponse.responseMessage = "Last time updated: " + new Date(cache.getKey()).toString();
+            hourlyWeatherResponse.responseMessage = "Last updated: " + new Date(cache.getKey()).toString();
             return hourlyWeatherResponse;
         }
 
         // use the free onecall api provided by openweathermap.org
-        System.out.println("lat:" + coord.getLat());
-        System.out.println("lat:" + coord.getLon());
+        // System.out.println("lat:" + coord.getLat());
+        // System.out.println("lat:" + coord.getLon());
 
         Future<HttpResponse<JsonNode>> future = Unirest.get(BASE_URL + "onecall")
                 .queryString("lat", coord.getLat())
@@ -183,6 +183,4 @@ public class OpenWeatherAPI extends WeatherAPI {
         hourlyWeatherResponseCachePool.insertCache(coord.toString(), ret);
         return ret;
     }
-
-
 }

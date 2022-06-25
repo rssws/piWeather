@@ -100,13 +100,14 @@ Prerequisites: `docker` (and `docker compose`)
    This project can work with their free plan. Use it for non-commercial purposes!
 
 3. Get the docker images:
+
    1. Pull the image directly:
 
       ```bash
       docker compose pull
       ```
-      
-      **Docker Hub:** 
+
+      **Docker Hub:**
       [pi-client](https://hub.docker.com/repository/docker/rssws/pi-client),
       [pi-service](https://hub.docker.com/repository/docker/rssws/pi-service)
 
@@ -121,8 +122,8 @@ Prerequisites: `docker` (and `docker compose`)
    docker compose up -d
    ```
 
-Then you can access the frontend via `http://localhost:80`
-and the backend via `http://localhost:80/api/`.
+Then you can access the frontend via `http://localhost:31414`
+and the backend via `http://localhost:31414/api/`.
 
 If you want to set up an SSL connection and change the domain name from `localhost` to your own domain,
 edit the Nginx configuration file `nginx.conf`.
@@ -158,6 +159,18 @@ Use `mvn install` to install all dependencies and generate the `jar` file. The f
 Use `mvn spring-boot:run -Dspring-boot.run.profiles=dev` to launch the server with `dev` profile.
 You might need to create this file first and specify the `apiKey`.
 Use `application-prod.yml` as a template.
+
+#### piSensor
+
+Starting from `v0.1.0-beta`, we added a new functionality called "local weather".
+
+The idea is to turn your raspberry pi into a temperature and humidity sensor with DHT11.
+The script will send the collected data to `piService`, which will be shown in `piClient`.
+
+The monitor page for local weather is hidden in `piClient` by default.
+Click on the "setting" to turn it on.
+
+Check more details [here](./piSensor/README.md).
 
 ## Gallery
 

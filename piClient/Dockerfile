@@ -4,8 +4,6 @@ FROM node:lts-alpine as build
 # set working directory
 WORKDIR /build
 
-ARG PI_API
-ENV PI_API $PI_API
 ARG VERSION
 
 ENV PATH /app/node_modules/.bin:$PATH

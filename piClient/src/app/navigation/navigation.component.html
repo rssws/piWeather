@@ -1,8 +1,12 @@
-<div class="container-fluid bg-dark text-light h-100">
+<div class="container-fluid bg-dark text-light h-100" id="nav-bar">
   <div class="d-flex p-0 justify-content-between align-items-center h-100">
     <div class="d-flex p-0 justify-content-center align-items-center">
       <h5 class="m-0 navigation-text" style="font-size: 5vh">PiWeather</h5>
       <div class="badge bg-primary ml-2 navigation-text">V {{ version }}</div>
+      <button type="button" class="btn btn-secondary ml-2 p-1" data-toggle="modal" data-target="#staticBackdrop">
+        <i class="material-icons navigation-text">settings</i>
+      </button>
+      <app-settings></app-settings>
     </div>
     <h5 class="m-0 navigation-text" style="font-size: 5vh">{{ today | date: 'medium' }}</h5>
   </div>
