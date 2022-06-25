@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build & Push & Deploy
+name: Push & Deploy
 
 # Controls when the workflow will run
 on:
@@ -53,6 +53,7 @@ jobs:
         run: |
           ssh -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
             " \
+            cd /home/pi/piWeather && \
             PI_WEATHER_VERSION=$(cat .env | grep VERSION) && \
             sed -i 's/VERSION=.*/'"$PI_WEATHER_VERSION"'/g' .env.prod && \
             unset $PI_WEATHER_VERSION \
@@ -72,5 +73,6 @@ jobs:
         run: |
           ssh -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
             " \
+            cd /home/pi/piWeather && \
             docker compose --env-file=.env.prod up -d \
             "
