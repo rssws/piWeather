@@ -54,9 +54,6 @@ public class LocalWeatherController {
         if(!apiKeyService.validate(apiKey)) {
             return new Response(ResponseStatus.ERROR, "Api key is not valid!");
         }
-        if (requestLimitationNormal.isTooFrequent(Utils.getRemoteAddr(request))) {
-            return new Response(ResponseStatus.ERROR, "Request sent too frequently! Please wait for one minute!");
-        }
 
         localWeatherAPI.setLocalWeatherByName(name, weather);
         return localWeatherAPI.getLocalWeatherByName(name);
