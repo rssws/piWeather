@@ -52,7 +52,7 @@ jobs:
       
       - name: Replace version in .env.prod
         run: |
-          ssh -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
+          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
             " \
             cd /home/pi/piWeather && \
             sed -i 's/VERSION=.*/'"$(cat .env | grep VERSION)"'/g' .env.prod \
@@ -60,7 +60,7 @@ jobs:
       
       - name: Pull the latest repository and docker images
         run: |
-          ssh -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
+          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
             " \
             cd /home/pi/piWeather && \
             git checkout main && \
@@ -70,7 +70,7 @@ jobs:
           
       - name: Run the latest images
         run: |
-          ssh -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
+          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
             " \
             cd /home/pi/piWeather && \
             docker compose --env-file=.env.prod up -d \
