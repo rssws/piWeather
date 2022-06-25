@@ -1,0 +1,1 @@
+echo '@reboot sleep 30 && python3 /home/pi/Desktop/piWeather/piSensor/main.py &' | crontab -
