@@ -37,6 +37,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-and-push]
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Create SSH private key
         run: |
           mkdir -p ~/.ssh/
@@ -54,9 +56,7 @@ jobs:
           ssh -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
             " \
             cd /home/pi/piWeather && \
-            PI_WEATHER_VERSION=$(cat .env | grep VERSION) && \
-            sed -i 's/VERSION=.*/'"$PI_WEATHER_VERSION"'/g' .env.prod && \
-            unset $PI_WEATHER_VERSION \
+            sed -i 's/VERSION=.*/'"$(cat .env | grep VERSION)"'/g' .env.prod \
             "
       
       - name: Pull the latest repository and docker images
