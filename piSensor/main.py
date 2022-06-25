@@ -20,7 +20,7 @@ DHTPin = 11     #define the pin of DHT11
 
 def sendData(humidity, temperatur):
     payload = { 'description': NAME, 'humidity': humidity, 'temp': temperatur }
-    r = requests.put(PI_SERVICE_URL + 'local-weather/' + NAME + '/' + PI_API, data=payload)
+    requests.put(PI_SERVICE_URL + 'local-weather/' + NAME + '/' + PI_API, json=payload)
 
 def loop():
     dht = DHT11.DHT(DHTPin)   #create a DHT class object
