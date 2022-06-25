@@ -1,5 +1,8 @@
 # piWeather
 
+![build](https://github.com/rssws/piWeather/actions/workflows/build-and-canary-push.yml/badge.svg?event=push)
+![build](https://github.com/rssws/piWeather/actions/workflows/build-and-push-and-deploy.yml/badge.svg)
+
 _piWeather_ is a project providing users with weather information.
 It consists of _piClient_ as the frontend and _piService_ as the backend.
 Its initial purpose is to show weather data on a monitor installed on raspberry pi.
