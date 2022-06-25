@@ -18,12 +18,12 @@ PI_API = ''
 
 DHTPin = 11     #define the pin of DHT11
 
-def sendData(description, humidity, temperatur):
-    payload = { 'description': description, 'humidity': humidity, 'temp': temperatur }
+def sendData(humidity, temperatur):
+    payload = { 'description': NAME, 'humidity': humidity, 'temp': temperatur }
     r = requests.put(PI_SERVICE_URL + 'local-weather/' + NAME + '/' + PI_API, data=payload)
 
 def loop():
-    dht = DHT11(DHTPin)   #create a DHT class object
+    dht = DHT11.DHT(DHTPin)   #create a DHT class object
     counts = 0 # Measurement counts
     while True:
         counts += 1
@@ -34,9 +34,9 @@ def loop():
                 # print("DHT11,OK!")
                 break
             time.sleep(0.1)
-        sendData()
+        sendData(dht.humidity, dht.temperature)
         print("Humidity : %.2f, \t Temperature : %.2f \n" % (dht.humidity, dht.temperature))
-        time.sleep(5)
+        time.sleep()
 
 if __name__ == '__main__':
 
