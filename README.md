@@ -181,6 +181,7 @@ Buy a better display rather than TFT LCD to avoid this problem.
 ![pi-weather-1](./docs/images/pi-weather-1.jpg "pi-weather-1")
 ![pi-weather-2](./docs/images/pi-weather-2.jpg "pi-weather-2")
 ![pi-weather-3](./docs/images/pi-weather-3.jpg "pi-weather-3")
+![pi-weather-4](./docs/images/pi-weather-4.png "pi-weather-4")
 
 ## Contribution
 
