@@ -31,12 +31,16 @@ def loop():
         for i in range(0, 15):            
             chk = dht.readDHT11()     #read DHT11 and get a return value. Then determine whether data read is normal according to the return value.
             if (chk is dht.DHTLIB_OK):      #read DHT11 and get a return value. Then determine whether data read is normal according to the return value.
-                # print("DHT11,OK!")
                 break
             time.sleep(0.1)
-        sendData(dht.humidity, dht.temperature)
-        print("Humidity : %.2f, \t Temperature : %.2f \n" % (dht.humidity, dht.temperature))
-        time.sleep(5)
+        if (chk is dht.DHTLIB_OK):
+            print("[OK] Successful to read DHT11")
+            sendData(dht.humidity, dht.temperature)
+            print("Humidity : %.2f, \t Temperature : %.2f \n" % (dht.humidity, dht.temperature))
+        else:
+            print("[WARNING] Failed to read DHT11")
+
+        time.sleep(2)
 
 if __name__ == '__main__':
     load_dotenv()
