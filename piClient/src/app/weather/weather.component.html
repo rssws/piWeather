@@ -4,7 +4,9 @@
   [cityShort]="cityShort"
   (notifyCoord)="setCoord($event)"
   (notifyWeatherResponse)="setWeatherResponse($event)"
-  *ngIf="currentPage === 0 && !locationLoading"
+  *ngIf="
+    currentPage === settings.display.weatherDefault.index && !locationLoading && settings.display.weatherDefault.show
+  "
 >
 </app-weather-default>
 
@@ -13,7 +15,9 @@
   [city]="city"
   [coord]="coord"
   (notifyHourlyWeatherResponse)="setHourlyWeatherResponse($event)"
-  *ngIf="currentPage === 1 && !locationLoading"
+  *ngIf="
+    currentPage === settings.display.weatherHourly.index && !locationLoading && settings.display.weatherHourly.show
+  "
 >
 </app-weather-hourly-chart>
 
@@ -22,7 +26,7 @@
   [city]="city"
   [coord]="coord"
   (notifyDailyWeatherResponse)="setDailyWeatherResponse($event)"
-  *ngIf="currentPage === 2 && !locationLoading"
+  *ngIf="currentPage === settings.display.weatherDaily.index && !locationLoading && settings.display.weatherDaily.show"
 >
 </app-weather-seven-day-chart>
 
@@ -30,7 +34,7 @@
   [localWeatherResponse]="localWeatherResponse"
   [name]="localName"
   (notifyLocalWeatherResponse)="setLocalWeatherResponse($event)"
-  *ngIf="currentPage === 3 && !locationLoading"
+  *ngIf="currentPage === settings.display.weatherLocal.index && !locationLoading && settings.display.weatherLocal.show"
 >
 </app-weather-local>
 

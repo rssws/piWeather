@@ -1,0 +1,71 @@
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Display</h5>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="weather-default"
+            [checked]="settings.display.weatherDefault.show"
+            (change)="settings.display.weatherDefault.show = !settings.display.weatherDefault.show"
+          />
+          <label class="form-check-label" for="weather-default"> Weather Default </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="weather-hourly"
+            [checked]="settings.display.weatherHourly.show"
+            (change)="settings.display.weatherHourly.show = !settings.display.weatherHourly.show"
+          />
+          <label class="form-check-label" for="weather-hourly"> Weather Hourly </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="weather-daily"
+            [checked]="settings.display.weatherDaily.show"
+            (change)="settings.display.weatherDaily.show = !settings.display.weatherDaily.show"
+          />
+          <label class="form-check-label" for="weather-daily"> Weather Daily </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="weather-local"
+            [checked]="settings.display.weatherLocal.show"
+            (change)="settings.display.weatherLocal.show = !settings.display.weatherLocal.show"
+          />
+          <label class="form-check-label" for="weather-local"> Weather Local </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
