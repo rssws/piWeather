@@ -182,14 +182,6 @@
     "@angular-eslint/utils" "14.0.0"
     "@typescript-eslint/utils" "5.29.0"
 
-"@angular-eslint/eslint-plugin@14.0.0-alpha.0":
-  version "14.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-14.0.0-alpha.0.tgz#bff31b151d1fe821dbe9063ef5180e012bfd0800"
-  integrity sha512-1ybSXpH5UYwUBMPt5nu9B6zNXB8xQm5lkOqey8tkdi+MrM9sITwbXBUkZhAbbqPIcFXGHZeV7zoMOZVqmuLi7A==
-  dependencies:
-    "@angular-eslint/utils" "14.0.0-alpha.0"
-    "@typescript-eslint/experimental-utils" "5.17.0"
-
 "@angular-eslint/schematics@14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-14.0.0.tgz#2cf0fe37c50364e2e69cfb8516e99f900330b273"
@@ -216,14 +208,6 @@
   dependencies:
     "@angular-eslint/bundled-angular-compiler" "14.0.0"
     "@typescript-eslint/utils" "5.29.0"
-
-"@angular-eslint/utils@14.0.0-alpha.0":
-  version "14.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/utils/-/utils-14.0.0-alpha.0.tgz#179299a465f220fe7be39c1982e09638f3416e96"
-  integrity sha512-1QLz45dhD2z6RemSlWjRWPnGIcoxZQPzXK+BP6y29oUcUchh+Nxmo0U0H7cGiy5by5LXNv7bl9spwVmhf8OUBw==
-  dependencies:
-    "@angular-eslint/bundled-angular-compiler" "14.0.0-alpha.0"
-    "@typescript-eslint/experimental-utils" "5.17.0"
 
 "@angular/animations@~14.0.1":
   version "14.0.1"
@@ -5850,10 +5834,10 @@ karma-jasmine-html-reporter@^2.0.0:
   resolved "https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-2.0.0.tgz#76c26ce40e217dc36a630fbcd7b31c3462948bf2"
   integrity sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==
 
-karma-jasmine@~5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-5.0.1.tgz#854e9204b62cfa07242a8c66b8ab83751a896d02"
-  integrity sha512-FkL1Kk+JAKmim8VWU8RXKZBpl0lLI7J8LijM0/q7oP7emfB6QMZV1Az+JgqGKSLpF0tYaav+KUVFQroZUxQTHA==
+karma-jasmine@~5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-5.1.0.tgz#3af4558a6502fa16856a0f346ec2193d4b884b2f"
+  integrity sha512-i/zQLFrfEpRyQoJF9fsCdTMOF5c2dK7C7OmsuKg2D0YSsuZSfQDiLuaiktbuio6F2wiCsZSnSnieIQ0ant/uzQ==
   dependencies:
     jasmine-core "^4.1.0"
 
