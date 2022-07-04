@@ -182,14 +182,6 @@
     "@angular-eslint/utils" "14.0.0"
     "@typescript-eslint/utils" "5.29.0"
 
-"@angular-eslint/eslint-plugin@14.0.0-alpha.0":
-  version "14.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-14.0.0-alpha.0.tgz#bff31b151d1fe821dbe9063ef5180e012bfd0800"
-  integrity sha512-1ybSXpH5UYwUBMPt5nu9B6zNXB8xQm5lkOqey8tkdi+MrM9sITwbXBUkZhAbbqPIcFXGHZeV7zoMOZVqmuLi7A==
-  dependencies:
-    "@angular-eslint/utils" "14.0.0-alpha.0"
-    "@typescript-eslint/experimental-utils" "5.17.0"
-
 "@angular-eslint/schematics@14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-14.0.0.tgz#2cf0fe37c50364e2e69cfb8516e99f900330b273"
@@ -216,14 +208,6 @@
   dependencies:
     "@angular-eslint/bundled-angular-compiler" "14.0.0"
     "@typescript-eslint/utils" "5.29.0"
-
-"@angular-eslint/utils@14.0.0-alpha.0":
-  version "14.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/utils/-/utils-14.0.0-alpha.0.tgz#179299a465f220fe7be39c1982e09638f3416e96"
-  integrity sha512-1QLz45dhD2z6RemSlWjRWPnGIcoxZQPzXK+BP6y29oUcUchh+Nxmo0U0H7cGiy5by5LXNv7bl9spwVmhf8OUBw==
-  dependencies:
-    "@angular-eslint/bundled-angular-compiler" "14.0.0-alpha.0"
-    "@typescript-eslint/experimental-utils" "5.17.0"
 
 "@angular/animations@~14.0.1":
   version "14.0.1"
@@ -7452,10 +7436,10 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.2.tgz#e26d71a18a74c3d0f0597f55f01fb6c06c206032"
-  integrity sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==
+prettier@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
+  integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
 
 pretty-bytes@^5.3.0:
   version "5.6.0"
