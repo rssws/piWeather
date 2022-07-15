@@ -5,7 +5,7 @@ const fs = require('fs');
 const argv = yargs
   .option('env', {
     alias: 'e',
-    description: 'Set the build environment to "production" or "development"',
+    description: 'Set the build environment to "prod" or "dev"',
     type: 'string',
   })
   .help()

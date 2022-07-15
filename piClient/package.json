@@ -5,9 +5,9 @@
   "packageManager": "yarn@1.22.19",
   "scripts": {
     "ng": "ng",
-    "start": "yarn ts-node ./script/prebuild.ts -e development && ng serve --configuration development",
-    "build:dev": "yarn ts-node ./script/prebuild.ts -e development && ng build --configuration development",
-    "build:prod": "yarn ts-node ./script/prebuild.ts -e production && ng build --configuration production",
+    "start": "yarn ts-node ./script/prebuild.ts -e dev && ng serve --configuration dev",
+    "build:dev": "yarn ts-node ./script/prebuild.ts -e dev && ng build --configuration dev",
+    "build:prod": "yarn ts-node ./script/prebuild.ts -e prod && ng build --configuration prod",
     "test": "ng test",
     "lint:fix": "pretty-quick --staged && ng lint --fix",
     "e2e": "ng e2e",

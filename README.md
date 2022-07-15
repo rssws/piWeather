@@ -140,7 +140,7 @@ Use `npm install --global yarn` to install `yarn`.
 
 Before you start, you need to run `yarn prepare` to initialize `husky`.
 
-Setup the `.env.development` and / or `.env.production` file first before you run the app.
+Setup the `.env.dev` and / or `.env.prod` file first before you run the app.
 Do not modify `.env` file directly since it will be overwritten!
 
 Use `yarn start` to launch a development server.

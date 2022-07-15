@@ -15,7 +15,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn global add @angular/cli
 
 COPY ./script ./script
-COPY ./tsconfig.json ./tsconfig.app.json ./.env.production ./angular.json ./
+COPY ./tsconfig.json ./tsconfig.app.json ./.env.prod ./angular.json ./
 COPY ./src ./src
 
 # build the app

@@ -45,6 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.env.development.local
-.env.production.local
+.env.dev.local
+.env.prod.local
 .env
