@@ -164,6 +164,14 @@
     "@angular-eslint/utils" "14.0.0"
     "@typescript-eslint/utils" "5.29.0"
 
+"@angular-eslint/eslint-plugin@14.0.2":
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-14.0.2.tgz#8bd852aa6d5f709e43972308dddbd1f604735f67"
+  integrity sha512-TfiXWqaWGysnPB6JstZouvA9tNwIsCLvSIGqniE1U90kX6p5nL8Z09JOiv/9jlYfgAIEgUD48BGMZzDi86voGA==
+  dependencies:
+    "@angular-eslint/utils" "14.0.2"
+    "@typescript-eslint/utils" "5.29.0"
+
 "@angular-eslint/schematics@14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-14.0.0.tgz#2cf0fe37c50364e2e69cfb8516e99f900330b273"
@@ -189,6 +197,14 @@
   integrity sha512-gK8gDzo2MbMXYDqsWqE28rGkqPMMhPG4mIWp+zMsuWYG7oiUlD2TibWerYQCfGa9K2FTF97UGmI21Ckqsgex7w==
   dependencies:
     "@angular-eslint/bundled-angular-compiler" "14.0.0"
+    "@typescript-eslint/utils" "5.29.0"
+
+"@angular-eslint/utils@14.0.2":
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/utils/-/utils-14.0.2.tgz#15cbbf142eebab66fc887f0d85b0518a2989d832"
+  integrity sha512-8cHyQFG3jIHMHBjlqMU9ExAgOFGqbvxUa5EUvdc8wJUXtwhYx5NCQupdSpy/qG8gHiXjxvxinEtACZJQ9/SOwQ==
+  dependencies:
+    "@angular-eslint/bundled-angular-compiler" "14.0.2"
     "@typescript-eslint/utils" "5.29.0"
 
 "@angular/animations@~14.0.1":
