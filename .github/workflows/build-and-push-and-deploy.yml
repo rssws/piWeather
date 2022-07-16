@@ -87,5 +87,5 @@ jobs:
           ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} \
             " \
             cd /home/pi/piWeather && \
-            docker compose --env-file=.env.prod up -d \
+            docker compose --env-file=.env.prod up -d --remove-orphans \
             "
