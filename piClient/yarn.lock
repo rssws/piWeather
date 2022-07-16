@@ -6348,10 +6348,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.1.tgz#26c8a3cee6cc05fbcf1e333cd2fc3e003326c0b5"
   integrity sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==
 
-ng2-charts@3.0.11:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/ng2-charts/-/ng2-charts-3.0.11.tgz#1a2857744efa68f4c979fe15ca94a209846b04fa"
-  integrity sha512-HHy188JIGt48tbww8MhT9PYGcFNCMeQCzVbQoezmunKxQcjg3dBatLov+qoLXbSQvhRYbYVowthTtY7/7ZsiSg==
+ng2-charts@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ng2-charts/-/ng2-charts-4.0.0.tgz#9ca80bea0122656bcfbd9c21f5cb9a997df1d5f2"
+  integrity sha512-1COLMs1UH8XIurk9C3pBQW3zH4RM3ggPtaC5vGjEmRGZ2cK/j8DqpzN4xMqyk0KB4D2vw/ZejgXmxxZ4Ie58Rw==
   dependencies:
     lodash-es "^4.17.15"
     tslib "^2.3.0"
