@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: pi-client
-          image: rssws/pi-client:0.1.1-beta
+          image: rssws/pi-client:latest
           ports:
             - name: pi-client-port
               containerPort: 8080

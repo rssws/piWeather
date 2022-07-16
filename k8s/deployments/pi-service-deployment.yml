@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: pi-service
-          image: rssws/pi-service:0.1.1-beta
+          image: rssws/pi-service:latest
           ports:
             - name: pi-service-port
               containerPort: 31415
