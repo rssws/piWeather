@@ -143,9 +143,7 @@ You can find relevant files under `./k8s` folder.
 
 You should setup your own Kubernetes cluster first. If you want to use kubernetes on bare metal, these installation scripts might be helpful.
 
-[install k8s with flannel on debian (master)](https://gist.github.com/rssws/e2d82275ef04940b50294dafb3fa6bdd)
-
-[install k8s on debian (worker)](https://gist.github.com/rssws/6a50aaea5b442c1373ee93bb73ccc6b0)
+[install k8s with flannel on debian / ubuntu](https://gist.github.com/rssws/e2d82275ef04940b50294dafb3fa6bdd)
 
 Otherwise, feel free to use GKE, AKS, etc.
 
