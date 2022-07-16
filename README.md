@@ -30,7 +30,8 @@ Some third-party APIs are used in this project:
 
 - openweathermap.org
 - ip-api.com
-  They both provide free plans for non-commercial use. Thanks a lot for that.
+
+They both provide free plans for non-commercial use. Thanks a lot for that.
 
 #### Disclaimer:
 
