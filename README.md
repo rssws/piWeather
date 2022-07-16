@@ -30,8 +30,7 @@ Some third-party APIs are used in this project:
 
 - openweathermap.org
 - ip-api.com
-
-They both provide free plans for non-commercial use. Thanks a lot for that.
+  They both provide free plans for non-commercial use. Thanks a lot for that.
 
 #### Disclaimer:
 
@@ -89,6 +88,8 @@ Here, let's take raspberry pi and my own setup as an example.
 
 ### Set up your own server using Docker
 
+<img src="https://www.docker.com/wp-content/uploads/2022/05/Docker_Temporary_Image_Google_Blue_1080x1080_v1.png" alt="drawing" width="80" />
+
 This section is about using Docker to set up your own backend server.
 Skip it if you don't want to have your own server.
 
@@ -130,6 +131,42 @@ and the backend via `http://localhost:31414/api/`.
 
 If you want to set up an SSL connection and change the domain name from `localhost` to your own domain,
 edit the Nginx configuration file `nginx.conf`.
+
+### Set up your own server using Kubernetes
+
+<img src="https://kubernetes.io/images/favicon.png
+" alt="drawing" width="80"/>
+
+As an experimental feature, you can use Kubernetes to set up your own services with scaling capability.
+
+You can find relevant files under `./k8s` folder.
+
+You should setup your own Kubernetes cluster first. If you want to use kubernetes on bare metal, these installation scripts might be helpful.
+
+[install k8s with flannel on debian (master)](https://gist.github.com/rssws/e2d82275ef04940b50294dafb3fa6bdd)
+
+[install k8s on debian (worker)](https://gist.github.com/rssws/6a50aaea5b442c1373ee93bb73ccc6b0)
+
+Otherwise, feel free to use GKE, AKS, etc.
+
+The following steps are for the bare metal cluster. If you use cloud providers, you should replace the installation steps for nginx ingress controller and probably `ingress.yml`.
+
+1. Create your own secret from `.env` file.
+   - `kubectl create secret generic prod-secrets --from-env-file=.env -o yaml`
+2. Install `ingress-nginx` for the bare metal cluster:
+   - `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/baremetal/deploy.yaml`
+   - Check [ingress-nginx#bare-metal-clusters](https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal-clusters) for more example.
+3. Apply all yaml files in `k8s` folder.
+   - `kubectl apply -f k8s/deployments`
+   - `kubectl apply -f k8s/services`
+   - `kubectl apply -f k8s/ingress.yml`
+4. Get the NodePort of the ingress controller:
+   - `kubectl get svc -n ingress-nginx ingress-nginx-controller`
+   - Use the ports `3xxxx` for http and https respectively.
+   ```
+   NAME                       TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+   ingress-nginx-controller   NodePort   10.xxx.xxx.123  <none>        80:32232/TCP,443:32745/TCP   63m
+   ```
 
 ### Compile and build the project locally
 
