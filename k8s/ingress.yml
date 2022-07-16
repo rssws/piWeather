@@ -3,11 +3,11 @@ kind: Ingress
 metadata:
   name: pi-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx ingress controller
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: localhost
-      http:
+    - http:
         paths:
           - path: /
             pathType: Exact
