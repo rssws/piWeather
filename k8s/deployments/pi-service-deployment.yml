@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pi-service-deployment
-  labels:
-    app: pi-service
 spec:
   replicas: 1
   selector:
@@ -19,6 +17,7 @@ spec:
     metadata:
       labels:
         env: prod
+        app: pi-service
     spec:
       containers:
         - name: pi-service

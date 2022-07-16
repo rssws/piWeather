@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pi-client-deployment
-  labels:
-    app: pi-client
 spec:
   replicas: 1
   selector:
@@ -19,6 +17,7 @@ spec:
     metadata:
       labels:
         env: prod
+        app: pi-client
     spec:
       containers:
         - name: pi-client

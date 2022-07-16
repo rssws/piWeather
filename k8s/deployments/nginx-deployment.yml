@@ -28,8 +28,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  labels:
-    app: nginx
 spec:
   replicas: 1
   selector:
@@ -45,6 +43,7 @@ spec:
     metadata:
       labels:
         env: prod
+        app: nginx
     spec:
       containers:
         - name: nginx
