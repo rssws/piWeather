@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: prod
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        env: prod
+        app: pi-service
+    spec:
+      containers:
+        - name: pi-service
+          image: rssws/pi-service:latest
+          ports:
+            - name: pi-service-port
+              containerPort: 31415
+          envFrom:
+            - secretRef:
+                name: prod-secret

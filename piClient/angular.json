@@ -24,8 +24,8 @@
             "scripts": []
           },
           "configurations": {
-            "defaultConfiguration": "development",
-            "development": {
+            "defaultConfiguration": "dev",
+            "dev": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -33,7 +33,7 @@
               "sourceMap": true,
               "namedChunks": true
             },
-            "production": {
+            "prod": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -68,11 +68,11 @@
             "browserTarget": "piClient:build"
           },
           "configurations": {
-            "development": {
-              "browserTarget": "piClient:build:development"
+            "dev": {
+              "browserTarget": "piClient:build:dev"
             },
-            "production": {
-              "browserTarget": "piClient:build:production"
+            "prod": {
+              "browserTarget": "piClient:build:prod"
             }
           }
         },
@@ -107,8 +107,8 @@
             "devServerTarget": "piClient:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "piClient:serve:production"
+            "prod": {
+              "devServerTarget": "piClient:serve:prod"
             }
           }
         }
