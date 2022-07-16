@@ -89,7 +89,7 @@ Here, let's take raspberry pi and my own setup as an example.
 
 ### Set up your own server using Docker
 
-<img src="https://www.docker.com/wp-content/uploads/2022/05/Docker_Temporary_Image_Google_Blue_1080x1080_v1.png" alt="drawing" width="80" />
+<img src="https://www.docker.com/wp-content/uploads/2022/05/Docker_Temporary_Image_Google_Blue_1080x1080_v1.png" alt="docker" width="80" />
 
 This section is about using Docker to set up your own backend server.
 Skip it if you don't want to have your own server.
@@ -135,8 +135,7 @@ edit the Nginx configuration file `nginx.conf`.
 
 ### Set up your own server using Kubernetes
 
-<img src="https://kubernetes.io/images/favicon.png
-" alt="drawing" width="80"/>
+<img src="https://kubernetes.io/images/favicon.png" alt="kubernetes" width="80"/>
 
 As an experimental feature, you can use Kubernetes to set up your own services with scaling capability.
 
