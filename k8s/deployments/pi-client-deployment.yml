@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-client-deployment
+  labels:
+    app: pi-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: prod
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        env: prod
+    spec:
+      containers:
+        - name: pi-client
+          image: rssws/pi-client:0.1.1-beta
+          ports:
+            - name: pi-client-port
+              containerPort: 8080

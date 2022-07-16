@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pi-client-service
+spec:
+  type: ClusterIP
+  selector:
+    app: pi-client
+  ports:
+    - name: pi-client-service-port
+      protocol: TCP
+      port: 8080
+      targetPort: pi-client-port

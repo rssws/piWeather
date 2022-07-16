@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+    - name: nginx-service-port
+      protocol: TCP
+      port: 31414
+      targetPort: nginx-port
