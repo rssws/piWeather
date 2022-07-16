@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  nginx:
+  nginx-service:
     image: nginx:latest
     ports:
       - "31414:80"
@@ -10,7 +10,7 @@ services:
     depends_on:
       - pi-client
       - pi-service
-  pi-client:
+  pi-client-service:
     build:
       context: ./piClient
       args:
@@ -19,7 +19,7 @@ services:
     restart: on-failure
     # ports:
     #   - "8080:8080"
-  pi-service:
+  pi-service-service:
     build:
       context: ./piService
       args:
