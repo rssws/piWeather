@@ -35,7 +35,9 @@ jobs:
         run: docker compose build
 
       - name: Push the Docker images
-        run: docker compose push
+        run: |
+          docker push -a rssws/pi-client
+          docker push -a rssws/pi-service
 
   deploy:
     runs-on: ubuntu-latest
