@@ -1,7 +1,8 @@
 # piWeather
 
-![build](https://github.com/rssws/piWeather/actions/workflows/build-and-canary-push.yml/badge.svg?event=push)
-![build](https://github.com/rssws/piWeather/actions/workflows/build-and-push-and-deploy.yml/badge.svg)
+![build](https://github.com/rssws/piWeather/actions/workflows/build.yml/badge.svg?event=push)
+![canary-push](https://github.com/rssws/piWeather/actions/workflows/canary-push.yml/badge.svg)
+![push-and-deploy](https://github.com/rssws/piWeather/actions/workflows/push-and-deploy.yml/badge.svg)
 
 _piWeather_ is a project providing users with weather information.
 It consists of _piClient_ as the frontend and _piService_ as the backend.

@@ -11,20 +11,24 @@ services:
       - pi-client
       - pi-service
   pi-client-service:
+    image: rssws/pi-client:${VERSION}
     build:
       context: ./piClient
       args:
         VERSION: "${VERSION}"
-    image: rssws/pi-client:${VERSION}
+      # tags:
+      #   - rssws/pi-client:latest
     restart: on-failure
     # ports:
     #   - "8080:8080"
   pi-service-service:
+    image: rssws/pi-service:${VERSION}
     build:
       context: ./piService
       args:
         VERSION: "${VERSION}"
-    image: rssws/pi-service:${VERSION}
+      # tags:
+      #   - rssws/pi-service:latest
     restart: on-failure
     environment:
       - "OPEN_WEATHER_API=${OPEN_WEATHER_API}"
