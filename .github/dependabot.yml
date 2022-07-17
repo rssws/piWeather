@@ -7,13 +7,15 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/piClient"
+    target-branch: "develop"
     schedule:
-      interval: "daily"
+      interval: "weekly"
       
   - package-ecosystem: "maven"
     directory: "/piService"
+    target-branch: "develop"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
   - package-ecosystem: "github-actions"
     directory: "/"
