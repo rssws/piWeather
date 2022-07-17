@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main", "develop"]
+  pull_request:
+    branches: ["main", "develop"]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Add canary version tag
+        run: sed -i -E 's/(VERSION=)(.*)(\ *)/\1\2-canary-'"$(date +%Y%m%d-%H%M%S)"'\3/' .env
+
+      - name: Build the Docker images
+        run: docker compose build
