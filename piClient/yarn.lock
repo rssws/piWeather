@@ -131,11 +131,6 @@
     "@nrwl/devkit" "^14.5.9"
     nx "^14.5.9"
 
-"@angular-eslint/bundled-angular-compiler@14.0.2":
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/bundled-angular-compiler/-/bundled-angular-compiler-14.0.2.tgz#16aed25430b96fac50d069b2e44dae89fa4b12ad"
-  integrity sha512-Ev001tGwBfy6lFd1IDrAHfW87VUqDmMQY5KWY+LM3dn0PY2XZv1RsBM16tBFbi7EaDeaxeFZg/G8PN5x+anNbg==
-
 "@angular-eslint/bundled-angular-compiler@14.0.3":
   version "14.0.3"
   resolved "https://registry.yarnpkg.com/@angular-eslint/bundled-angular-compiler/-/bundled-angular-compiler-14.0.3.tgz#add784ef54664602ed3f6dc1b658e64ce87effa2"
@@ -1849,10 +1844,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jasmine@~4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-4.0.3.tgz#097ce710d70eb7f3662e96c1f75824dd22c27d5c"
-  integrity sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==
+"@types/jasmine@~4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-4.3.0.tgz#1dfdfb226820911addb1b5a9031422be72c53aac"
+  integrity sha512-u1jWakf8CWvLfSEZyxmzkgBzOEvXH/szpT0e6G8BTkx5Eu0BhDn7sbc5dz0JBN/6Wwm9rBe+JAsk9tJRyH9ZkA==
 
 "@types/json-schema@*", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.11"
