@@ -35,7 +35,7 @@
     "@angular-eslint/eslint-plugin-template": "15.1.0",
     "@angular-eslint/schematics": "15.1.0",
     "@angular-eslint/template-parser": "15.1.0",
-    "@angular/cli": "~15.0.4",
+    "@angular/cli": "~15.1.2",
     "@angular/compiler-cli": "~14.0.1",
     "@ngx-env/builder": "^2.2.0",
     "@types/jasmine": "~4.3.1",
