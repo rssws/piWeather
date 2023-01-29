@@ -50,15 +50,13 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/private
           sudo chmod 600 ~/.ssh/private
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_SSH_KNOWN_HOSTS }}
 
       - name: Replace version in .env.prod
         run: |
-          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} -p ${{ secrets.DEPLOY_SSH_PORT }} \
+          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} -p ${{ secrets.DEPLOY_SSH_PORT }} -o StrictHostKeyChecking=no \
             " \
             cd ${{ secrets.DEPLOY_FOLDER }} && \
             sed -i 's/VERSION=.*/'"$(cat .env | grep VERSION)"'/g' .env.prod \
@@ -66,7 +64,7 @@ jobs:
 
       - name: Pull the latest repository and docker images
         run: |
-          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} -p ${{ secrets.DEPLOY_SSH_PORT }} \
+          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} -p ${{ secrets.DEPLOY_SSH_PORT }} -o StrictHostKeyChecking=no \
             " \
             cd ${{ secrets.DEPLOY_FOLDER }} && \
             git checkout main && \
@@ -76,7 +74,7 @@ jobs:
 
       - name: Run the latest images
         run: |
-          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} -p ${{ secrets.DEPLOY_SSH_PORT }} \
+          ssh -i ~/.ssh/private -t ${{ secrets.DEPLOY_SSH_HOSTNAME }} -p ${{ secrets.DEPLOY_SSH_PORT }} -o StrictHostKeyChecking=no \
             " \
             cd ${{ secrets.DEPLOY_FOLDER }} && \
             docker compose --env-file=.env.prod up -d --remove-orphans --force-recreate \
