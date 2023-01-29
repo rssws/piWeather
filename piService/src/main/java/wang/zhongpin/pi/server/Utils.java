@@ -3,7 +3,7 @@ package wang.zhongpin.pi.server;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public final class Utils {
     private static final String IPV4_PATTERN =

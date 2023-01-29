@@ -7,7 +7,7 @@ import wang.zhongpin.pi.model.Response;
 import wang.zhongpin.pi.model.ResponseStatus;
 import wang.zhongpin.pi.service.IPGeolocationService.IPGeolocationAPI;
 import wang.zhongpin.pi.service.IPGeolocationService.IpApiComIPGeolocationAPI;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/ipGeolocation")
