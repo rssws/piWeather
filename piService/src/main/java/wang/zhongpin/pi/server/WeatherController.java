@@ -8,7 +8,7 @@ import wang.zhongpin.pi.model.ResponseStatus;
 import wang.zhongpin.pi.model.weather.Coord;
 import wang.zhongpin.pi.service.weatherService.OpenWeatherAPI;
 import wang.zhongpin.pi.service.weatherService.WeatherAPI;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import static java.lang.Double.parseDouble;
 
 @RestController
