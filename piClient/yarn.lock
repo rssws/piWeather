@@ -191,13 +191,17 @@
     aria-query "5.1.3"
     axobject-query "3.1.1"
 
-"@angular-eslint/eslint-plugin@15.1.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-15.1.0.tgz#b91f050df0ffaa4d07496b2ca3cdad2be39df28d"
-  integrity sha512-3RRDnxaCEI5DdKq3hipXvrxctPPssrUXnNbgczJRIJ3cssr4ndobCSNqUSepA6vWj5mWe7w+nnh4vgfhZ5keig==
+"@angular-eslint/eslint-plugin-template@15.2.0":
+  version "15.2.0"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-15.2.0.tgz#a7348bdddcdab51031439b9f9e09ea9bb9236484"
+  integrity sha512-aL3czf5Jpv29rKN3UG20tQepX1+V0d6xc0g+1l0zPHZJYjVd6Oy0nIxWiGfl4yanaXiVpmxiV4vUcLlqqaFwbw==
   dependencies:
-    "@angular-eslint/utils" "15.1.0"
-    "@typescript-eslint/utils" "5.44.0"
+    "@angular-eslint/bundled-angular-compiler" "15.2.0"
+    "@angular-eslint/utils" "15.2.0"
+    "@typescript-eslint/type-utils" "5.48.1"
+    "@typescript-eslint/utils" "5.48.1"
+    aria-query "5.1.3"
+    axobject-query "3.1.1"
 
 "@angular-eslint/eslint-plugin@15.2.0":
   version "15.2.0"
@@ -207,14 +211,14 @@
     "@angular-eslint/utils" "15.2.0"
     "@typescript-eslint/utils" "5.48.1"
 
-"@angular-eslint/schematics@15.1.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-15.1.0.tgz#aadc73f4b6142468237ba6da7e7c72a6520839a0"
-  integrity sha512-BJm7FFVCad8TV8Gtwq+FbgtLGvjJDlpt5Rne1hCd4nCr8vlQZxSWVwnTHRkAs+qd5dYn3p7bGcKZxEZzeVkWjA==
+"@angular-eslint/schematics@15.2.0":
+  version "15.2.0"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-15.2.0.tgz#443d187cc8e8bc783c82a8326f2c47edacfaad39"
+  integrity sha512-N9tuVu3vL47beppTsV9wAF+v6M9trbJnuNWYQGGsqA3mtCAkFUvJuHyWcXNPdSCNv/cJtR1OOJ7Y922uB5JPJQ==
   dependencies:
-    "@angular-eslint/eslint-plugin" "15.1.0"
-    "@angular-eslint/eslint-plugin-template" "15.1.0"
-    ignore "5.2.0"
+    "@angular-eslint/eslint-plugin" "15.2.0"
+    "@angular-eslint/eslint-plugin-template" "15.2.0"
+    ignore "5.2.4"
     strip-json-comments "3.1.1"
     tmp "0.2.1"
 
@@ -5152,10 +5156,10 @@ ignore-walk@^6.0.0:
   dependencies:
     minimatch "^5.0.1"
 
-ignore@5.2.0, ignore@^5.1.4, ignore@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
-  integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
+ignore@5.2.4, ignore@^5.1.4, ignore@^5.2.0:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
+  integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
 
 ignore@^4.0.3:
   version "4.0.6"
