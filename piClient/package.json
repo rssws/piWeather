@@ -41,7 +41,7 @@
     "@ngx-env/builder": "^15.1.0",
     "@types/jasmine": "~4.3.1",
     "@types/node": "^18.11.19",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.48.2",
     "eslint": "^8.32.0",
     "eslint-plugin-import": "^2.26.0",
