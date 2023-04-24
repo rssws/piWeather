@@ -142,17 +142,6 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular-devkit/schematics@^14.0.0":
-  version "14.2.10"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-14.2.10.tgz#91fcc85199aa7fa9a3a0cb49d8a5266421f9d5e3"
-  integrity sha512-MMp31KpJTwKHisXOq+6VOXYApq97hZxFaFmZk396X5aIFTCELUwjcezQDk+u2nEs5iK/COUfnN3plGcfJxYhQA==
-  dependencies:
-    "@angular-devkit/core" "14.2.10"
-    jsonc-parser "3.1.0"
-    magic-string "0.26.2"
-    ora "5.4.1"
-    rxjs "6.6.7"
-
 "@angular-eslint/builder@15.2.1":
   version "15.2.1"
   resolved "https://registry.yarnpkg.com/@angular-eslint/builder/-/builder-15.2.1.tgz#ce8c65e3b671897db75ad90b41ef4cd6efe626f0"
@@ -1555,12 +1544,11 @@
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-14.2.10.tgz#d33ff1147d01bd1f5d936a3d1744c81a28e2ca6a"
   integrity sha512-sLHapZLVub6mEz5b19tf1VfIV1w3tYfg7FNPLeni79aldxu1FbP1v2WmiFAnMzrswqyK0bhTtxrl+Z/CLKqyoQ==
 
-"@ngx-env/builder@^15.1.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@ngx-env/builder/-/builder-15.1.0.tgz#e13477442e26823998679d0531c346026f5dbc37"
-  integrity sha512-jleFSLH9f/YpsGuZeq2n1mGVAZj2A9LE2CjOohlthZx25DDbW63GbcIQlMdOe7ru7w29/kUrDnkCjm4+wWdtwg==
+"@ngx-env/builder@^15.2.1":
+  version "15.2.1"
+  resolved "https://registry.yarnpkg.com/@ngx-env/builder/-/builder-15.2.1.tgz#7a29a6e81caebf1e3f055a979494822f8420bdaf"
+  integrity sha512-UvYJiGONrgei9RTd1X6auGJVU4z7hofjx4+3SM8AWiibbYJ2RONzuSd3TyVzSJwBIVXTVVYlzApNaEtvnrERMQ==
   dependencies:
-    "@angular-devkit/schematics" "^14.0.0"
     dotenv "9.0.2"
     dotenv-expand "5.1.0"
 
@@ -6013,13 +6001,6 @@ lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   version "7.14.1"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.14.1.tgz#8da8d2f5f59827edb388e63e459ac23d6d408fea"
   integrity sha512-ysxwsnTKdAx96aTRdhDOCQfDgbHnt8SK0KY8SEjO0wHinhWOFTESbjVCMPbU1uGXg/ch4lifqx0wfjOawU2+WA==
-
-magic-string@0.26.2:
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.2.tgz#5331700e4158cd6befda738bb6b0c7b93c0d4432"
-  integrity sha512-NzzlXpclt5zAbmo6h6jNc8zl2gNRGHvmsZW4IvZhTC4W7k4OlLP+S5YLussa/r3ixNT66KOQfNORlXHSOy/X4A==
-  dependencies:
-    sourcemap-codec "^1.4.8"
 
 magic-string@0.29.0:
   version "0.29.0"
