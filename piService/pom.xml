@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>com.konghq</groupId>
 			<artifactId>unirest-java</artifactId>
-			<version>3.14.2</version>
+			<version>3.14.4</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-validator</groupId>
