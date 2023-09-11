@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-and-push]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Create SSH private key
         run: |
